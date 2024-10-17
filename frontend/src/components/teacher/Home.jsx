@@ -1,39 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Footer from "../../partials/Footer";
-import Header from "../../partials/Header";
-import "./viewTeacher.css";
-import img from "./imgUrl";
-
-function ViewTeacher() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/admin/viewTeacher")
-      .then((res) => res.json())
-      .then((result) => {
-        // console.log("Getproduct", result);
-        setData(result);
-      });
-  }, []);
-
-  // console.log("1", data);
-
-  function Delete(e) {
-    return console.log(e);
-  }
-
+import Footer from "./partials/Footer";
+import Header from "./partials/Header";
+// import "./TeacherHome.css";
+function Home() {
   return (
     <>
       <Header />
-
-      <div class="row ">
+      <div class="row " style={{ backgroundColor: "#EAE7DC" }}>
         <div
-          class=" col-2 "
+          class="col-2"
           style={{
-            // width: "200px",
-            // minHeight: "550px",
-            backgroundColor: "#140485",
+            width: "240px",
+            minHeight: "550px",
+            backgroundColor: "#EAE7DC",
           }}
         >
           <div
@@ -41,9 +19,16 @@ function ViewTeacher() {
             style={{
               width: "200px",
               minHeight: "550px",
-              backgroundColor: "#140485",
+              // backgroundColor: "#150485",
             }}
           >
+            {/* <div
+            style={{
+              width: "200px",
+              minHeight: "550px",
+              backgroundColor: "#150485",
+            }}
+          > */}
             <a
               href="/"
               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
@@ -56,7 +41,12 @@ function ViewTeacher() {
             {/* <hr> */}
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="/admin" class="nav-link link-light">
+                <a
+                  href="#"
+                  class="nav-link "
+                  aria-current="page"
+                  style={{ color: "#E85A4F" }}
+                >
                   <svg class="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#home"/> */}
                   </svg>
@@ -64,7 +54,7 @@ function ViewTeacher() {
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-light">
+                <a href="#" class="nav-link link-secondary">
                   <svg class="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#speedometer2"/> */}
                   </svg>
@@ -72,11 +62,7 @@ function ViewTeacher() {
                 </a>
               </li>
               <li>
-                <a
-                  href="/admin/viewTeacher"
-                  class="nav-link active"
-                  aria-current="page"
-                >
+                <a href="#" class="nav-link link-secondary">
                   <svg class="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#table"/> */}
                   </svg>
@@ -84,7 +70,7 @@ function ViewTeacher() {
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-light">
+                <a href="#" class="nav-link link-secondary">
                   <svg class="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#grid"/> */}
                   </svg>
@@ -92,7 +78,7 @@ function ViewTeacher() {
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-light">
+                <a href="#" class="nav-link link-secondary">
                   <svg class="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#people-circle"/> */}
                   </svg>
@@ -104,7 +90,7 @@ function ViewTeacher() {
             <div class="dropdown">
               <a
                 href="#"
-                class="d-flex align-items-center link-light text-decoration-none dropdown-toggle"
+                class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle text-light"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -115,7 +101,7 @@ function ViewTeacher() {
                   height="32"
                   class="rounded-circle me-2"
                 />
-                <strong>mdo</strong>
+                <strong class="text-light">mdo</strong>
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li>
@@ -143,59 +129,12 @@ function ViewTeacher() {
                 </li>
               </ul>
             </div>
+            {/* </div>{" "} */}
           </div>{" "}
         </div>
 
-        <div
-          class="col-10 HeaderGradient-custom"
-          // style={{ marginLeft: "80px" }}
-        >
-          <section class="">
-            <Link class="text-light" to="/admin/addTeacher">
-              Add
-            </Link>
-            <table class="table">
-              <thead class="">
-                <th>name</th>
-                <th>dob</th>
-                <th>email</th>
-                <th>subject</th>
-                <th>address</th>
-                <th>phone</th>
-                <th>country</th>
-                <th>image</th>
-              </thead>
-
-              {data.map((item, index) => (
-                <tr class="text-light ">
-                  <td>{item.name}</td>
-                  <td>{item.dob}</td>
-                  <td>{item.email}</td>
-                  <td>{item.subject}</td>
-                  <td>{item.address}</td>
-                  <td>{item.number}</td>
-                  <td>{item.country}</td>
-                  <td>
-                    <img
-                      style={{ height: "100px", width: "100px" }}
-                      src={img + item.image}
-                      // src={`http://localhost:2000/productImages/${items.image}`}
-                    ></img>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        Delete(item._id);
-                      }}
-                      class="btn btn-primary"
-                    >
-                      X
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </table>
-          </section>
+        <div class="col-10  ">
+          <h2>Home</h2>
         </div>
       </div>
       <Footer />
@@ -203,4 +142,4 @@ function ViewTeacher() {
   );
 }
 
-export default ViewTeacher;
+export default Home;

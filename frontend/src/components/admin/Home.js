@@ -1,46 +1,34 @@
 import Footer from "./partials/Footer";
 import Header from "./partials/Header";
-import "../main.css";
+// import "../main.css";
 function Home() {
   return (
     <>
       <Header />
-      <div class="row ">
-        <div class="col-2"  style={{
-              width: "240px",
-              minHeight: "550px",
-              backgroundColor: "#140485",
-            }}>
+      <div class="row " style={{ backgroundColor: "#FFF5CD" }}>
+        <div
+          class="col-2"
+         
+        >
           <div
             class="d-flex flex-column flex-shrink-0 p-3   "
             style={{
-              width: "200px",
+              // width: "200px",
               minHeight: "550px",
-              backgroundColor: "#150485",
+              // backgroundColor: "#150485",
             }}
           >
-            {/* <div
-            style={{
-              width: "200px",
-              minHeight: "550px",
-              backgroundColor: "#150485",
-            }}
-          > */}
+           
             <a
               href="/"
               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
             >
-              <svg class="bi pe-none me-2" width="40" height="32">
-                {/* <use xlink:href="#bootstrap"/> */}
-              </svg>
-              {/* <span class="fs-4">Sidebar</span> */}
+             
             </a>
-            {/* <hr> */}
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
+                <a href="#" class="nav-link link-secondary " aria-current="page">
                   <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#home"/> */}
                   </svg>
                   Home
                 </a>
@@ -48,7 +36,6 @@ function Home() {
               <li>
                 <a href="#" class="nav-link link-secondary">
                   <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#speedometer2"/> */}
                   </svg>
                   Dashboard
                 </a>
@@ -125,7 +112,7 @@ function Home() {
           </div>{" "}
         </div>
 
-        <div class="col-10 HeaderGradient-custom ">
+        <div class="col-10 ">
           <h2>hkjk</h2>
         </div>
       </div>

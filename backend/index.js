@@ -2,10 +2,14 @@ var express = require("express");
 var app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-var admin = require("./router/admin.router");
 const Database = require("./database/database");
 var session = require("express-session");
 const fileUpload = require("express-fileupload");
+
+var admin = require("./router/admin.router");
+var teacher = require("./router/teacher.router");
+var parent = require("./router/parent.router");
+var student = require("./router/student.router");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,4 +27,8 @@ app.use(fileUpload());
 app.use(express.static("public"));
 
 app.use("/admin", admin);
+app.use("/teacher", teacher);
+app.use("/parent", parent);
+app.use("/student", student);
+
 app.listen(4000);
