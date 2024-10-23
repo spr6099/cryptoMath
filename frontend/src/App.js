@@ -16,6 +16,10 @@ import StudentRegister from "./components/parents/student_register/std_register"
 import StudentLogin from "./components/students/login/login";
 import StudentsHome from "./components/students/home";
 import Main from "./components/home/Home";
+import Tic_tac from "./games/tic_tac/tic_tac";
+import Typing from "./games/typing/typing";
+import Snake from "./games/snake/snake";
+import Guess from "./games/guess/guess";
 
 function App() {
   const [admin, setAdmin] = useState(JSON.parse(localStorage.getItem("admin")));
@@ -65,6 +69,12 @@ function App() {
           ></Route>
           <Route path="/student/login" element={<StudentLogin />}></Route>
           <Route path="/students/home" element={<StudentsHome />}></Route>
+          <Route path="/games/tictac" element={<Tic_tac/>}></Route>
+          <Route path="/games/typing" element={<Typing/>}></Route>
+          <Route path="/games/snake" element={<Snake/>}></Route>
+          <Route path="/games/guess" element={<Guess/>}></Route>
+
+
         </Routes>
       </BrowserRouter>
     </>

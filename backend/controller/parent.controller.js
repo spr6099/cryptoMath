@@ -19,10 +19,12 @@ exports.parentRegister = async (req, res) => {
       state: req.body.state,
       address: req.body.address,
       pin: req.body.pin,
+      image: req.files.image.name,
     };
 
-    console.log(register_datas);
-
+    // console.log("jnkm m ", register_datas);
+    let fileup = req.files.image;
+    await fileup.mv("public/parents/" + register_datas.image);
     let ParentRegister = await ParentReg.create(register_datas);
 
     let login_datas = {
@@ -37,8 +39,6 @@ exports.parentRegister = async (req, res) => {
     console.log(err);
   }
 };
-
-
 
 exports.login = async (req, res) => {
   try {

@@ -59,8 +59,19 @@ function Login() {
             style={{ marginTop: "50px" }}
           >
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div class="   m-5" style={{ borderRadius: "1rem" }}>
-                <div class="  text-center">
+              <div class="m-5" style={{ borderRadius: "1rem" }}>
+                <div
+                  className=" text-center"
+                  style={{
+                    width: "400px",
+                    background: "transparent",
+                    border: "2px solid rgba(255, 255, 255, .2)",
+                    backdropFilter: " blur(5px)",
+                    color: "#fff",
+                    borderRadius: "12px",
+                    padding: "10px 20px",
+                  }}
+                >
                   <div class="mb-md-5 mt-md-4 pb-1 ">
                     <h2 class="fw-bold mb-2 text-uppercase ">Login</h2>
                     {/* <p class="text-dark-50 mb-4  ">
@@ -68,14 +79,15 @@ function Login() {
                     </p> */}
                     <form onSubmit={FormSubmit}>
                       <div
+                        style={{ marginLeft: "40px", marginRight: "40px",paddingBottom:"20px" }}
+
                         // data-mdb-input-init
-                        class="form-outline  mb-3 "
                       >
                         <input
                           type="text"
                           placeholder=" Username"
                           required
-                          class="form-control form-control-lg"
+                          className="form-control form-control-lg  border-dark shadow"
                           onChange={(e) => {
                             setName(e.target.value);
                           }}
@@ -90,8 +102,8 @@ function Login() {
                           type="password"
                           placeholder="Password"
                           required
-                          class="form-control form-control-lg bg-transparent border-dark shadow"
-                          style={{ background: "none" }}
+                          className="form-control form-control-lg  border-dark shadow"
+                          // style={{ background: "none" }}
                           onChange={(e) => {
                             setPassword(e.target.value);
                           }}
@@ -99,7 +111,7 @@ function Login() {
                       </div>
 
                       <button
-                        class="btn btn-outline-info btn-lg px-5"
+                        class="btn btn-info btn-lg px-5"
                         type="submit"
                       >
                         Login

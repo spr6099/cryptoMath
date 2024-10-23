@@ -12,6 +12,8 @@ const registerSchema = mongoose.Schema({
   state: { type: String, required: true },
   address: { type: String, required: true },
   pin: { type: String, required: true },
+  image: { type: String, required: true },
+
   createdAt: { type: Date, default: Date.now() },
 });
 

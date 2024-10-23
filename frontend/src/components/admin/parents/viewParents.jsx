@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
-
+import Img from "./imgUrl"
 import "../../components.css";
 
 function ViewParents() {
@@ -31,7 +31,7 @@ function ViewParents() {
             // style={{ marginLeft: "80px" }}
           >
             <section className="m-2 p-2">
-             <h4 className="text-center">Parents</h4>
+              <h4 className="text-center">Parents</h4>
               <table class="table">
                 <thead class="">
                   <th>name</th>
@@ -56,8 +56,8 @@ function ViewParents() {
                       <td>
                         <img
                           style={{ height: "100px", width: "100px" }}
-                          // src={img + item.regId.image}
-                          // src={`http://localhost:2000/productImages/${items.image}`}
+                          src={Img + item.parentRegID.image}
+                          // src={`http://localhost:4000/parents/${item.parentRegID.image}`}
                         ></img>
                       </td>
                       <td>

@@ -8,6 +8,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+
+
   const LoginSubmit = (e) => {
     e.preventDefault();
 
@@ -27,7 +29,7 @@ function Login() {
       .then((res) => res.json())
       .then((result) => {
         console.log("students", result);
-        if (result.status == "student") {
+        if (result.status === "student") {
           localStorage.setItem("student", JSON.stringify(result));
           navigate("/students/home");
           // window.location.reload();

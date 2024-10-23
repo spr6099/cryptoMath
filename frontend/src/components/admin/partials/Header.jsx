@@ -32,48 +32,6 @@ function Header() {
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 "
               style={{ color: "#8E8D8A" }}
             ></h2>
-
-            <div class="dropdown text-end">
-              <a
-                href="#"
-                class="d-block link-dark text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt="mdo"
-                  width="32"
-                  height="32"
-                  class="rounded-circle"
-                />
-              </a>
-              <ul class="dropdown-menu text-small">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    New project...
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Sign out
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
         <div>
@@ -81,7 +39,7 @@ function Header() {
             className="d-flex justify-content-between"
             style={{ backgroundColor: "#245501", height: "50px" }}
           >
-            <div >
+            <div>
               <div class="dropdown">
                 <button className="dropbtn btn text-light m-2 ">
                   <a className="links" href="/">
@@ -127,18 +85,53 @@ function Header() {
               }
             >
               {" "}
-              <div class="dropdown ">
-                <button className="dropbtn btn text-light m-2  ">
-                  <a className="links" onClick={Logout}>
-                    <sub className="text-light p-2">admin</sub>Logout
-                  </a>
-                </button>
+              <div class="dropdown text-end">
+                <a
+                  href="#"
+                  class="d-block link-dark text-decoration-none dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://github.com/mdo.png"
+                    alt="mdo"
+                    width="32"
+                    height="32"
+                    class="rounded-circle"
+                  />
+                </a>
+                <ul class="dropdown-menu text-small">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Admin
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a className="dropdown-item" onClick={Logout}>
+                      Signout
+                      {/* <sub className="text-dark p-2">admin</sub> */}
+                    </a>
+                  </li>
+                </ul>
               </div>
+             
             </div>
           </div>
         </div>
       </div>
-     
     </>
   );
 }

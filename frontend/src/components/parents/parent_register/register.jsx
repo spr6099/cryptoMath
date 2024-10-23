@@ -11,7 +11,7 @@ function Register() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRpassword] = useState("");
-  const [relation, setRelation] = useState("");
+  const [image, setImage] = useState();
   const [house, setHouse] = useState("");
   const [hnumber, setHnumber] = useState("");
   const [street, setStreet] = useState("");
@@ -32,7 +32,7 @@ function Register() {
     datas.append("email", email);
     datas.append("phone", phone);
     datas.append("password", password);
-    // datas.append("relation", relation);
+    datas.append("image", image);
     datas.append("house", house);
     datas.append("hnumber", hnumber);
     datas.append("street", street);
@@ -156,23 +156,19 @@ function Register() {
                   </div>
                 </div>
 
-                {/* --------Relation------ */}
+                {/* --------Image------ */}
                 <div class="row">
                   <div class="col-12">
                     <label className="form-label select-label" for="subject">
-                      Relation to the Student
+                      upload Image
                     </label>
-                    <select
-                      data-mdb-select-init
-                      className="select form-control form-control-lg bg-transparent"
-                      id="subject"
-                    >
-                      <option value="1">select</option>
-                      <option value="2">Father</option>
-                      <option value="3">Mother</option>
-                      <option value="4">Guardian</option>
-                      <option value="5">other</option>
-                    </select>
+                    <input
+                      type="file"
+                      className="form-control corm-control-lg bg-transparent"
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                      }}
+                    ></input>
                   </div>
                 </div>
               </div>
@@ -332,12 +328,13 @@ function Register() {
                     />
                   </div>
                 </div>
-              </div>
-              <div className="text-end">
-                <button className="m-2" onClick={RegisterSubmit}>
+                <div className="text-end">
+                <button className=" btn btn-outline-info m-2" onClick={RegisterSubmit}>
                   Register
                 </button>
               </div>
+              </div>
+              
             </div>
           </div>
           {/* <div>

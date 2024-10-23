@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import * as React from "react";
+
+import { useState } from "react";
 import Footer from "../../partials/Footer";
 import Header from "../../partials/Header";
-import "./editTeacher.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import "./addTeacher.css";
+import { useNavigate } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-
-function EditTeacher() {
+function AddTeacher() {
   const [name, setName] = useState("");
   const [dob, setDOB] = useState("");
   const [email, setEmail] = useState("");
@@ -20,49 +21,8 @@ function EditTeacher() {
   const [password, setPassword] = useState("");
   const [number, setNumber] = useState("");
   const [gender, setGender] = useState("");
-  const [id, setId] = useState("");
 
-  const location = useLocation();
   const navigate = useNavigate();
-
-  let updateId = {
-    id: location.state.id,
-  };
-
-  // console.log("id",id);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/admin/editTeacher", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateId),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        // console.log(result);
-        setName(result.name);
-        setDOB(result.dob);
-        setEmail(result.email);
-        setSubject(result.subject);
-        setImage(result.image);
-        setAddress(result.address);
-        setPassword(result.password);
-        setNumber(result.number);
-        setGender(result.gender);
-        setId(updateId.id);
-      });
-
-    // fetch("http://localhost:4000/admin/updateTeacher")
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     // console.log("Getproduct", result);
-    //     setData(result);
-    //   });
-  }, []);
-
   const FormSubmit = (e) => {
     e.preventDefault();
     // let datas = {
@@ -86,11 +46,12 @@ function EditTeacher() {
     datas.append("password", password);
     datas.append("number", number);
     datas.append("gender", gender);
-    datas.append("id", id);
 
+    console.log(datas);
+    
     // ---------add Datas---------------
 
-    fetch("http://localhost:4000/admin/updateTeacher", {
+    fetch("http://localhost:4000/admin/teacher", {
       method: "post",
       // headers: {
       //   Accept: "application/json",
@@ -109,128 +70,15 @@ function EditTeacher() {
     <>
       <Header />
       <div class="row ">
-        <div
-          class="col-2"
-          style={{
-            width: "240px",
-            // minHeight: "650px",
-            backgroundColor: "#140485",
-          }}
-        >
-          <div
-            class="d-flex flex-column flex-shrink-0  p-3 "
-            style={{
-              width: "200px",
-              // minHeight: "550px",
-              height: "100%",
-              backgroundColor: "#FFCFB3",
-            }}
-          >
-            <a
-              href="/"
-              class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-            >
-              <svg class="bi pe-none me-2" width="40" height="32">
-                {/* <use xlink:href="#bootstrap"/> */}
-              </svg>
-              {/* <span class="fs-4">Sidebar</span> */}
-            </a>
-            {/* <hr> */}
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="/admin" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#home"/> */}
-                  </svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/admin/viewTeacher" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#speedometer2"/> */}
-                  </svg>
-                  View Teacher
-                </a>
-              </li>
-              <li>
-                <a href="" class="nav-link active" aria-current="page">
-                  <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#table"/> */}
-                  </svg>
-                  Edit Teacher
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#grid"/> */}
-                  </svg>
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#people-circle"/> */}
-                  </svg>
-                  Customers
-                </a>
-              </li>
-            </ul>
-            {/* <hr> */}
-            <div class="dropdown">
-              <a
-                href="#"
-                class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt=""
-                  width="32"
-                  height="32"
-                  class="rounded-circle me-2"
-                />
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu text-small shadow">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    New project...
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Sign out
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-        </div>
+       
 
         <div class="col-10  HeaderGradient-custom2">
-          <section class="m-2 " style={{ minHeight: "550px" }}>
+          <section class="m-2 ">
             <div class="container ">
               <div class="row d-flex justify-content-start align-items-center ">
                 <div class="col-8 ">
                   <div
-                    class="card card-registration card-registration-2 bg-secondary"
+                    class=" card-registration card-registration-2 bg-secondary"
                     style={{ borderRdius: "15px" }}
                   >
                     <div class="card-body p-0 ">
@@ -257,16 +105,15 @@ function EditTeacher() {
                               <div data-mdb-input-init>
                                 <input
                                   type="text"
-                                  value={name}
+                                  label="Name"
                                   class="form-control form-control-lg border border-white "
                                   placeholder="Name"
                                   onChange={(e) => {
                                     setName(e.target.value);
                                   }}
-                                   
+                                  required
                                 />
                               </div>
-
                             </div>
 
                             {/* <div class="col-md-6 mb-4 pb-2">
@@ -289,30 +136,8 @@ function EditTeacher() {
                             </div> */}
 
                             <div class="mb-4 pb-2">
-                              {/* <div data-mdb-input-init class="form-outline">
-                                <input
-                                  type="radio"
-                                  name="gender"
-                                  value="male"
-                                  onChange={(e) => {
-                                    setGender(e.target.value);
-                                  }}
-                                   
-                                />{
-                                Male
-                                <input
-                                  type="radio"
-                                  name="gender"
-                                  value="female"
-                                  onChange={(e) => {
-                                    setGender(e.target.value);
-                                  }}
-                                   
-                                />{" "}
-                                Female
-                              </div>  */}
-
-                              {/* <FormControl>
+                            
+                              <FormControl>
                                 <FormLabel id="demo-row-radio-buttons-group-label">
                                   Gender
                                 </FormLabel>
@@ -330,7 +155,7 @@ function EditTeacher() {
                                     onChange={(e) => {
                                       setGender(e.target.value);
                                     }}
-                                     
+                                    required
                                   />
                                   <FormControlLabel
                                     value="male"
@@ -339,22 +164,22 @@ function EditTeacher() {
                                     onChange={(e) => {
                                       setGender(e.target.value);
                                     }}
-                                     
+                                    required
                                   />
                                 </RadioGroup>
-                              </FormControl> */}
+                              </FormControl>
                             </div>
 
                             <div class="mb-4 pb-2">
                               <div data-mdb-input-init class="form-outline">
                                 <input
-                                  value={dob}
                                   type="date"
                                   class="form-control form-control-lg"
                                   placeholder=""
                                   onChange={(e) => {
                                     setDOB(e.target.value);
                                   }}
+                                  required
                                 />
                               </div>
                             </div>
@@ -362,7 +187,6 @@ function EditTeacher() {
                             <div class="mb-4 pb-2">
                               <div data-mdb-input-init class="form-outline">
                                 <input
-                                  value={subject}
                                   type="text"
                                   class="form-control form-control-lg"
                                   placeholder="Subject"
@@ -381,27 +205,100 @@ function EditTeacher() {
                                   onChange={(e) => {
                                     setImage(e.target.files[0]);
                                   }}
+                                  required
                                 />
                               </div>
                             </div>
+                            {/* <div class="row">
+                              <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
+                                <div data-mdb-input-init class="form-outline">
+                                  <input
+                                    type="text"
+                                    id="form3Examplev5"
+                                    class="form-control form-control-lg"
+                                    placeholder=" Bussines Arena"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-6 border border-primary ">
+                                <select data-mdb-select-init>
+                                  <option value="1">Employees</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                  <option value="4">Four</option>
+                                </select>
+                              </div>
+                            </div> */}
                           </div>
                         </div>
                         <div class="col-lg-6 bg-indigo text-white">
                           <div class="p-3">
                             <h3 class="fw-normal mb-3">Contact Details</h3>
 
+                            {/* <div class="mb-4 pb-2">
+                              <div
+                                data-mdb-input-init
+                                class="form-outline form-white"
+                              >
+                                <input
+                                  type="text"
+                                  placeholder="Street + Nr"
+                                  class="form-control form-control-lg"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="mb-4 pb-2">
+                              <div
+                                data-mdb-input-init
+                                class="form-outline form-white"
+                              >
+                                <input
+                                  type="text"
+                                  placeholder="Additional Information"
+                                  class="form-control form-control-lg"
+                                />
+                              </div>
+                            </div> */}
+
+                            {/* <div class="row">
+                              <div class="col-md-5 mb-4 pb-2">
+                                <div
+                                  data-mdb-input-init
+                                  class="form-outline form-white"
+                                >
+                                  <input
+                                    type="text"
+                                    placeholder="Zip Code"
+                                    class="form-control form-control-lg"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-7 mb-4 pb-2">
+                                <div
+                                  data-mdb-input-init
+                                  class="form-outline form-white"
+                                >
+                                  <input
+                                    type="text"
+                                    placeholder="Place"
+                                    class="form-control form-control-lg"
+                                  />
+                                </div>
+                              </div>
+                            </div> */}
                             <div class="mb-3 pb-2">
                               <div
                                 data-mdb-input-init
                                 class="form-outline form-white"
                               >
                                 <textarea
-                                  value={address}
                                   class="form-control form-control-lg"
                                   placeholder="Address"
                                   onChange={(e) => {
                                     setAddress(e.target.value);
                                   }}
+                                  required
                                 ></textarea>
                               </div>
                             </div>
@@ -412,13 +309,13 @@ function EditTeacher() {
                                 class="form-outline form-white"
                               >
                                 <input
-                                  value={password}
                                   type="text"
                                   placeholder="Password"
                                   class="form-control form-control-lg"
                                   onChange={(e) => {
                                     setPassword(e.target.value);
                                   }}
+                                  required
                                 />
                               </div>
                             </div>
@@ -429,16 +326,43 @@ function EditTeacher() {
                                 class="form-outline form-white"
                               >
                                 <input
-                                  value={number}
                                   type="number"
                                   placeholder="Phone Number"
                                   class="form-control form-control-lg"
                                   onChange={(e) => {
                                     setNumber(e.target.value);
                                   }}
+                                  required
                                 />
                               </div>
                             </div>
+
+                            {/* <div class="row">
+                              <div class="col-md-5 mb-4 pb-2">
+                                <div
+                                  data-mdb-input-init
+                                  class="form-outline form-white"
+                                >
+                                  <input
+                                    type="text"
+                                    placeholder="Code +"
+                                    class="form-control form-control-lg"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-md-7 mb-4 pb-2">
+                                <div
+                                  data-mdb-input-init
+                                  class="form-outline form-white"
+                                >
+                                  <input
+                                    type="text"
+                                    placeholder="Phone Number"
+                                    class="form-control form-control-lg"
+                                  />
+                                </div>
+                              </div>
+                            </div> */}
 
                             <div class="mb-4">
                               <div
@@ -446,18 +370,18 @@ function EditTeacher() {
                                 class="form-outline form-white"
                               >
                                 <input
-                                  value={email}
                                   type="text"
                                   placeholder="Your Email"
                                   class="form-control form-control-lg"
                                   onChange={(e) => {
                                     setEmail(e.target.value);
                                   }}
+                                  required
                                 />
                               </div>
                             </div>
 
-                            {/* <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                            <div class="form-check d-flex justify-content-start mb-4 pb-3">
                               <input
                                 class="form-check-input me-3"
                                 type="checkbox"
@@ -474,7 +398,7 @@ function EditTeacher() {
                                 </a>{" "}
                                 of your site.
                               </label>
-                            </div> */}
+                            </div>
 
                             <button
                               type="submit"
@@ -483,7 +407,7 @@ function EditTeacher() {
                               class="btn btn-light btn-lg"
                               // data-mdb-ripple-color="dark"
                             >
-                              Update
+                              Register
                             </button>
                           </div>
                         </div>
@@ -501,4 +425,4 @@ function EditTeacher() {
   );
 }
 
-export default EditTeacher;
+export default AddTeacher;
