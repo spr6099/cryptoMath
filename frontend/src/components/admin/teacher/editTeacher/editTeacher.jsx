@@ -50,29 +50,12 @@ function EditTeacher() {
         setPassword(result.password);
         setNumber(result.regId.number);
         setGender(result.regId.gender);
-        setId(updateId.id);
+        setId(result.regId._id);
       });
-
-    // fetch("http://localhost:4000/admin/updateTeacher")
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     // console.log("Getproduct", result);
-    //     setData(result);
-    //   });
   }, []);
 
   const FormSubmit = (e) => {
     e.preventDefault();
-    // let datas = {
-    //   name: name,
-    //   dob: dob,
-    //   email: email,
-    //   subject: subject,
-    //   image: image,
-    //   address: address,
-    //   country: country,
-    //   number: number,
-    // };
 
     let datas = new FormData();
     datas.append("name", name);

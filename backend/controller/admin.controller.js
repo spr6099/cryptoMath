@@ -91,54 +91,12 @@ exports.editTeacher = async (req, res) => {
   }
 };
 
-// exports.updateTeacher = async (req, res) => {
-//   let datas = "";
-//   // console.log("datas", datas);
-
-//   if (req.files?.image) {
-//     datas = {
-//       name: req.body.name,
-//       dob: req.body.dob,
-//       email: req.body.email,
-//       subject: req.body.subject,
-//       image: req.files.image.name,
-//       address: req.body.address,
-//       password: req.body.password,
-//       number: req.body.number,
-//       gender: req.body.gender,
-//     };
-//     const fileUp = req.files.image;
-//     fileUp.mv("public/teacher/" + datas.image);
-//   } else {
-//     datas = {
-//       name: req.body.name,
-//       dob: req.body.dob,
-//       email: req.body.email,
-//       subject: req.body.subject,
-//       // image: req.files.image.name,
-//       address: req.body.address,
-//       password: req.body.password,
-//       number: req.body.number,
-//       gender: req.body.gender,
-//     };
-//   }
-
-//   try {
-//     // let fileup = req.files.image;
-//     // await fileup.mv("public/teacher/" + datas.image);
-//     await teacherRegDb.findByIdAndUpdate(req.body.id, datas);
-//     res.json("success");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 exports.updateTeacher = async (req, res) => {
   console.log("loginid", req.body.id);
 
-  let logDb = await TeacherLogin.findById(req.body.id);
-  let regId = logDb.regId;
-  console.log("regId", regId);
+  // let logDb = await TeacherLogin.findById(req.body.id);
+  // let regId = logDb.regId;
+  // console.log("regId", regId);
 
   try {
     if (req.files?.image) {
@@ -153,17 +111,15 @@ exports.updateTeacher = async (req, res) => {
       };
       let fileup = req.files.image;
       await fileup.mv("public/teacher/" + datas.image);
-      let TRegister = await teacherRegDb.findByIdAndUpdate(regId, datas);
-      // await teacherRegDb.findByIdAndUpdate(req.body.id, datas);
-
+      let TRegister = await teacherRegDb.findByIdAndUpdate(req.body.id, datas);
       let loginData = {
         email: req.body.email,
         password: req.body.password,
         status: "teacher",
         regId: TRegister._id,
       };
-      // let logId = await TeacherLogin.findByIdAndUpdate(req.body.id,loginData);
-      await TeacherLogin.findByIdAndUpdate(req.body.id, loginData);
+      await TeacherLogin.findOneAndUpdate({ regId: req.body.id }, loginData);
+      res.json("success");
     } else {
       let datas = {
         name: req.body.name,
@@ -174,22 +130,23 @@ exports.updateTeacher = async (req, res) => {
         gender: req.body.gender,
       };
 
-      let TRegister = await teacherRegDb.findByIdAndUpdate(regId, datas);
-
+      let TRegister = await teacherRegDb.findByIdAndUpdate(req.body.id, datas);
       let loginData = {
         email: req.body.email,
         password: req.body.password,
         status: "teacher",
         regId: TRegister._id,
       };
-      await TeacherLogin.findByIdAndUpdate(req.body.id, loginData);
+      await TeacherLogin.findOneAndUpdate({ regId: req.body.id }, loginData);
+      res.json("success");
     }
-
-    res.json("success");
   } catch (err) {
     console.log(err);
   }
 };
+
+
+
 
 exports.viewParents = async (req, res) => {
   try {

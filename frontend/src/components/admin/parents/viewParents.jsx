@@ -65,10 +65,10 @@ function ViewParents() {
                           <DeleteIcon />
                         </button>
 
-                        <Link style={{ color: "#00FF00" }}>
+                        {/* <Link style={{ color: "#00FF00" }}>
                           {" "}
                           <BorderColorTwoToneIcon />
-                        </Link>
+                        </Link> */}
                       </td>
                     </tr>
                     <tr></tr>
