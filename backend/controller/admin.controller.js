@@ -7,12 +7,17 @@ exports.login = async (req, res) => {
     password: req.body.password,
   };
   try {
+    req.session.save((err) => {
+        if (err) console.log("Error saving session:", err);
+    });
     // let data = await loginDb.findOne({ name: logindata.name });
     if (logindata.name == "admin") {
       if (logindata.password == "123") {
-        req.session.admin = logindata;
-        let data = req.session.admin;
-        res.json(data);
+        req.session.user = logindata;
+        // let data = req.session.admin;
+        console.log("qq",req.session);
+        
+        res.json(req.session.user);
       } else {
         res.json(" invalid password ");
       }
