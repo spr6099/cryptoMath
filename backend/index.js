@@ -11,17 +11,22 @@ var teacher = require("./router/teacher.router");
 var parent = require("./router/parent.router");
 var student = require("./router/student.router");
 
-app.use(cors());
+app.use(
+    cors({
+        credentials: true, // This allows cookies to be sent
+        origin: "http://localhost:3000",
+    })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 Database();
 app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
-    // cookie: { secure: true },
-  })
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false },
+    })
 );
 app.use(fileUpload());
 app.use(express.static("public"));
