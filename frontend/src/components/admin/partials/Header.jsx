@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function Header() {
   const navigate = useNavigate();
-  const [admin, setAdmin] = useState(JSON.parse(localStorage.getItem("admin")));
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   const Logout = () => {
     localStorage.clear();
@@ -81,7 +81,7 @@ function Header() {
             </div>
             <div
               style={
-                admin?.name === "admin" ? { display: "" } : { display: "none" }
+                user === "admin" ? { display: "" } : { display: "none" }
               }
             >
               {" "}

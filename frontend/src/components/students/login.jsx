@@ -1,42 +1,48 @@
-import Header from "../../home/partials/Header";
-import Footer from "../../home/partials/Footer";
+import Header from "../home/partials/Header";
+import Footer from "../home/partials/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
-
-  const LoginSubmit = (e) => {
+  const LoginSubmit = async (e) => {
     e.preventDefault();
 
     let datas = {
       email: email,
       password: password,
     };
-    // console.log(datas);
-    fetch("http://localhost:4000/student/login", {
-      method: "post",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(datas),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log("students", result);
-        if (result.status === "student") {
-          localStorage.setItem("student", JSON.stringify(result));
-          navigate("/students/home");
-          // window.location.reload();
-        } else {
-          console.log("incorrect userName and Password");
-        }
-      });
+    const res = await axios.post("http://localhost:4000/student/login", datas, {
+      withCredentials: true,
+    });
+    const result = res.data;
+    localStorage.setItem("user",JSON.stringify(result));
+    navigate("/student/home");
+    window.location.reload();
+
+    // fetch("http://localhost:4000/student/login", {
+    //   method: "post",
+    //   headers: {
+    //     accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(datas),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log("students", result);
+    //     if (result.status === "student") {
+    //       localStorage.setItem("student", JSON.stringify(result));
+    //       navigate("/students/home");
+    //       // window.location.reload();
+    //     } else {
+    //       console.log("incorrect userName and Password");
+    //     }
+    //   });
   };
   return (
     <>

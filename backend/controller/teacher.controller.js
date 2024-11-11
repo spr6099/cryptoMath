@@ -9,18 +9,20 @@ exports.login = async (req, res) => {
     let data = await TeacherLogin.findOne({ email: loginData.email });
     if (data) {
       if (data.password == loginData.password) {
-        req.session.teacher = data;
-        let teacher = req.session.teacher;
-        res.json(teacher);
+        req.session.user = data;
+        console.log(data);
+        
+        // let teacher = req.session.teacher;
+        res.json(req.session.user);
       } else {
         res.json("incorrect Password");
-        console.log("incorrect Password");
+        // console.log("incorrect Password");
       }
     } else {
       res.json("incorrect User");
-      console.log("Incorrect User");
+      // console.log("Incorrect User");
     }
-    console.log("teacherq", data);
+    // console.log("teacherq", data);
   } catch (err) {
     console.log(err);
   }

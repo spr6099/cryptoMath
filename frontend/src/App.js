@@ -13,17 +13,16 @@ import ParentsHome from "./components/parents/Home";
 import ParentsRegister from "./components/parents/parent_register/register";
 import ParentsLogin from "./components/parents/login/login";
 import StudentRegister from "./components/parents/student_register/std_register";
-import StudentLogin from "./components/students/login/login";
+import StudentLogin from "./components/students/login";
 import StudentsHome from "./components/students/home";
 import Main from "./components/home/Home";
 import { AdminLayout } from "./components/layout/adminLayout";
+import { TeacherLayout } from "./components/layout/teacherLayout";
+import { StudentLayout } from "./components/layout/studentLayout";
+import Games from "./components/students/games/game";
+import TicTacToe from "./components/students/games/tic_tac/index";
 
 function App() {
-  const [teacher, setTeacher] = useState(
-    JSON.parse(localStorage.getItem("teacher"))
-  );
-
-
   return (
     <>
       <BrowserRouter>
@@ -41,11 +40,10 @@ function App() {
           </Route>
 
           <Route path="/teacher/login" element={<TeacherLogin />}></Route>
-          {teacher?.status === "teacher" && (
-            <>
-              <Route path="/teacher/home" element={<TeacherHome />}></Route>
-            </>
-          )}
+
+          <Route path="/teacher" element={<TeacherLayout />}>
+            <Route path="home" element={<TeacherHome />}></Route>
+          </Route>
 
           <Route path="/parents/home" element={<ParentsHome />}></Route>
           <Route path="/parents/login" element={<ParentsLogin />}></Route>
@@ -56,8 +54,14 @@ function App() {
             element={<StudentRegister />}
           ></Route>
           <Route path="/student/login" element={<StudentLogin />}></Route>
-          <Route path="/students/home" element={<StudentsHome />}></Route>
-          
+
+          <Route path="/student" element={<StudentLayout />}>
+            <Route path="home" element={<StudentsHome />}></Route>
+            <Route path="games" element={<Games/>}></Route>
+            <Route path="games/ticTac" element={<TicTacToe/>}></Route>
+            </Route>
+
+
         </Routes>
       </BrowserRouter>
     </>
