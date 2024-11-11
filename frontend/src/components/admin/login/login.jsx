@@ -2,6 +2,7 @@ import Header from "../../home/partials/Header";
 import Footer from "../../home/partials/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [name, setName] = useState("");
@@ -9,32 +10,49 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const FormSubmit = (e) => {
+  const FormSubmit = async (e) => {
     e.preventDefault();
     let datas = {
       name: name,
       password: password,
     };
-    fetch("http://localhost:4000/admin/login", {
-      method: "post",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(datas),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        if (result !== "invalid password" || "invalid userName") {
-          localStorage.setItem("admin", JSON.stringify(result));
-          navigate("/admin/home");
-          window.location.reload();
-          // console.log(localStorage);
-        } else {
-          console.log("incorrect userName and Password");
-        }
+    // console.log("datas", datas);
+
+    try {
+      const res = await axios.post("http://localhost:4000/admin/login", datas, {
+        withCredentials: true,
       });
+      const result = res.data;
+      // console.log("11", result);
+      // localStorage.setItem("user", JSON.stringify(result));
+      localStorage.setItem("user", result);
+
+      navigate("/admin/home");
+      window.location.reload();
+    } catch (err) {
+      console.log("error", err);
+    }
+
+    // fetch("http://localhost:4000/admin/login", {
+    //   method: "post",
+    //   headers: {
+    //     accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(datas),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //     if (result !== "invalid password" || "invalid userName") {
+    //       localStorage.setItem("admin", JSON.stringify(result));
+    //       navigate("/admin/home");
+    //       window.location.reload();
+    //       // console.log(localStorage);
+    //     } else {
+    //       console.log("incorrect userName and Password");
+    //     }
+    //   });
   };
 
   return (
@@ -79,7 +97,11 @@ function Login() {
                     </p> */}
                     <form onSubmit={FormSubmit}>
                       <div
-                        style={{ marginLeft: "40px", marginRight: "40px",paddingBottom:"20px" }}
+                        style={{
+                          marginLeft: "40px",
+                          marginRight: "40px",
+                          paddingBottom: "20px",
+                        }}
 
                         // data-mdb-input-init
                       >
@@ -110,10 +132,7 @@ function Login() {
                         />
                       </div>
 
-                      <button
-                        class="btn btn-info btn-lg px-5"
-                        type="submit"
-                      >
+                      <button class="btn btn-info btn-lg px-5" type="submit">
                         Login
                       </button>
                     </form>

@@ -16,18 +16,13 @@ import StudentRegister from "./components/parents/student_register/std_register"
 import StudentLogin from "./components/students/login/login";
 import StudentsHome from "./components/students/home";
 import Main from "./components/home/Home";
-import Tic_tac from "./games/tic_tac/tic_tac";
-import Typing from "./games/typing/typing";
-import Snake from "./games/snake/snake";
-import Guess from "./games/guess/guess";
+import { AdminLayout } from "./components/layout/adminLayout";
 
 function App() {
-  const [admin, setAdmin] = useState(JSON.parse(localStorage.getItem("admin")));
   const [teacher, setTeacher] = useState(
     JSON.parse(localStorage.getItem("teacher"))
   );
 
-  // console.log("qq", teacher);
 
   return (
     <>
@@ -35,22 +30,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/admin/login" element={<AdminLogin />}></Route>
-          {admin?.name === "admin" && (
-            <>
-              <Route path="/admin/home" element={<Home />}></Route>
-              <Route path="/admin/viewTeacher" element={<ViewTeacher />} />
-              <Route path="/admin/addTeacher" element={<AddTeacher />} />
-              <Route path="/admin/editTeacher" element={<EditTeacher />} />
-              <Route
-                path="/admin/viewParents"
-                element={<ViewParents />}
-              ></Route>
-              <Route
-                path="/admin/viewStudent"
-                element={<ViewStudents />}
-              ></Route>
-            </>
-          )}
+
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="home" element={<Home />}></Route>
+            <Route path="viewTeacher" element={<ViewTeacher />} />
+            <Route path="addTeacher" element={<AddTeacher />} />
+            <Route path="editTeacher" element={<EditTeacher />} />
+            <Route path="viewParents" element={<ViewParents />}></Route>
+            <Route path="viewStudent" element={<ViewStudents />}></Route>
+          </Route>
 
           <Route path="/teacher/login" element={<TeacherLogin />}></Route>
           {teacher?.status === "teacher" && (
@@ -69,12 +57,7 @@ function App() {
           ></Route>
           <Route path="/student/login" element={<StudentLogin />}></Route>
           <Route path="/students/home" element={<StudentsHome />}></Route>
-          <Route path="/games/tictac" element={<Tic_tac/>}></Route>
-          <Route path="/games/typing" element={<Typing/>}></Route>
-          <Route path="/games/snake" element={<Snake/>}></Route>
-          <Route path="/games/guess" element={<Guess/>}></Route>
-
-
+          
         </Routes>
       </BrowserRouter>
     </>

@@ -6,13 +6,20 @@ exports.login = async (req, res) => {
     name: req.body.name,
     password: req.body.password,
   };
+  console.log("qq",logindata);
+  
   try {
+    req.session.save((err) => {
+      if (err) console.log("Error saving session", err);
+    });
     // let data = await loginDb.findOne({ name: logindata.name });
     if (logindata.name == "admin") {
       if (logindata.password == "123") {
-        req.session.admin = logindata;
-        let data = req.session.admin;
-        res.json(data);
+        req.session.user = logindata.name;
+        // let data = req.session.admin;
+        console.log("req.session",req.session.user);
+
+        res.json(req.session.user);
       } else {
         res.json(" invalid password ");
       }
@@ -144,9 +151,6 @@ exports.updateTeacher = async (req, res) => {
     console.log(err);
   }
 };
-
-
-
 
 exports.viewParents = async (req, res) => {
   try {
