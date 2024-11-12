@@ -82,9 +82,15 @@ body {
 }
 .game {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .game-info {
   margin-left: 20px;
+}
+
+.game-board {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

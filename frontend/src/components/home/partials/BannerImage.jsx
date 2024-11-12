@@ -11,7 +11,7 @@ function Banner() {
           ></img>
         </div>
         <div>
-          <div style={{ backgroundColor: "#245501", height: "40px" }}></div>
+          <div style={{ backgroundColor: "#2e2f31", height: "40px" }}></div>
         </div>
       </div>
     </>

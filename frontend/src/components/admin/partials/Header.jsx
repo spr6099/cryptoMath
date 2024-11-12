@@ -29,14 +29,14 @@ function Header() {
             ></a>
 
             <h2
-              class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 "
+              class=" nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 "
               style={{ color: "#8E8D8A" }}
             ></h2>
           </div>
         </div>
         <div>
           <div
-            className="d-flex justify-content-between"
+            className="d-flex justify-content-between "
             style={{ backgroundColor: "#245501", height: "50px" }}
           >
             <div>

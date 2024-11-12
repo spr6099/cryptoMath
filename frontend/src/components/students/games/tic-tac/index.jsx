@@ -97,7 +97,9 @@ export const TicTacToe = function Game({ handleWin }) {
         <div className="game">
             <div className="game-board">
                 <Board handleWin={handleWin} xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-            </div>
+                <div><a href="/student/games"><button>return Home</button></a></div>
+                </div>
+
             <div className="game-info">
                 <ol>{moves}</ol>
             </div>

@@ -20,7 +20,7 @@ import { AdminLayout } from "./components/layout/adminLayout";
 import { TeacherLayout } from "./components/layout/teacherLayout";
 import { StudentLayout } from "./components/layout/studentLayout";
 import Games from "./components/students/games/game";
-import TicTacToe from "./components/students/games/tic_tac/index";
+import TicTacToe from "./components/students/games/tic-tac/index";
 
 function App() {
   return (

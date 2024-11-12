@@ -1,4 +1,4 @@
-import { TicTacToe } from "./tic_tac/index";
+import { TicTacToe } from "./tic-tac/index";
 function Games() {
   return (
     <>

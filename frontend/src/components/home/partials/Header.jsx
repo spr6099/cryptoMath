@@ -4,7 +4,7 @@ function Header() {
   return (
     <>
       <div style={{ position: "sticky", top: "0" }}>
-        <div class=" bg-light" style={{ height: "70px" }}>
+        {/* <div class=" bg-light" style={{ height: "70px" }}>
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
             <h5
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0  lobster-regular p-2 m-2"
@@ -24,9 +24,9 @@ function Header() {
 
             
           </div>
-        </div>
+        </div> */}
         <div>
-          <div style={{ backgroundColor: "#245501", height: "50px" }}>
+          <div style={{ backgroundColor: "#2e2f31", height: "50px" }}>
             <div class="dropdown">
               <button class="dropbtn btn text-light m-2">
                 <a href="/">Home</a>
