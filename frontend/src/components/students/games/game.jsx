@@ -1,7 +1,10 @@
+import Footer from "../partials/Footer";
+import Header from "../partials/Header";
 import { TicTacToe } from "./tic-tac/index";
 function Games() {
   return (
     <>
+      <Header />
       <div className="">
         <div className="row ms-5 m-3 ">
           <div className="col-3 m-3 ">
@@ -137,8 +140,27 @@ function Games() {
               </a>
             </div>
           </div>
+          <div className="col-3 m-3">
+            <div
+              className="bg-primary  p-2"
+              style={{ Height: "200px", width: "200px" }}
+            >
+              <a href="/student/games/snake">
+                <img
+                  src="/images/slicer.jpg"
+                  height={"200px"}
+                  width={"100%"}
+                  style={{ objectFit: "cover" }}
+                ></img>
+                <div>
+                  <button className="w-100 ">snake react</button>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

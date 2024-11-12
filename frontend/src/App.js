@@ -21,6 +21,7 @@ import { TeacherLayout } from "./components/layout/teacherLayout";
 import { StudentLayout } from "./components/layout/studentLayout";
 import Games from "./components/students/games/game";
 import TicTacToe from "./components/students/games/tic-tac/index";
+import Snake from "./components/students/games/snake/snake";
 
 function App() {
   return (
@@ -57,11 +58,10 @@ function App() {
 
           <Route path="/student" element={<StudentLayout />}>
             <Route path="home" element={<StudentsHome />}></Route>
-            <Route path="games" element={<Games/>}></Route>
-            <Route path="games/ticTac" element={<TicTacToe/>}></Route>
-            </Route>
-
-
+            <Route path="games" element={<Games />}></Route>
+            <Route path="games/ticTac" element={<TicTacToe />}></Route>
+            <Route path="games/snake" element={<Snake />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
