@@ -5,4 +5,5 @@ var parent = require("../controller/parent.controller");
 router.post("/parentRegister", parent.parentRegister);
 router.post("/login", parent.login);
 router.post("/studentRegister", parent.studentRegister);
+router.post("/view_student_details", parent.view_student_details);
 module.exports = router;

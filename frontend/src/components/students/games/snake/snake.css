@@ -6,13 +6,13 @@
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
-body {
+/* body {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background: #E3F2FD;
-}
+} */
 .wrapper {
   width: 65vmin;
   height: 70vmin;

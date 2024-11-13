@@ -46,6 +46,7 @@ const student_loginSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "student_registers",
   },
+  parent_id: { type: String, required: true },
   status: { type: String, required: true },
   createdAt: { type: Date, default: Date.now() },
 });

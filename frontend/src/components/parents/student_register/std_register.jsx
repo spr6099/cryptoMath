@@ -16,6 +16,11 @@ import Footer from "../partials/Footer";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const [parents, setParents] = useState(
+    JSON.parse(localStorage.getItem("parents"))
+  );
+  // console.log("ppppp", parents._id);
+
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [relation, setRelation] = useState("");
@@ -38,7 +43,7 @@ function Register() {
     datas.append("email", email);
     datas.append("course", course);
     datas.append("password", password);
-
+    datas.append("parent_id", parents._id);
     fetch("http://localhost:4000/parent/studentRegister", {
       method: "post",
       // headers: {

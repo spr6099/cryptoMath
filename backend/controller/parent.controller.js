@@ -87,9 +87,22 @@ exports.studentRegister = async (req, res) => {
       password: req.body.password,
       status: "student",
       studentRegID: studentRegister._id,
+      parent_id: req.body.parent_id,
     };
     await student_login.create(login_datas);
     res.json("success");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.view_student_details = async (req, res) => {
+  try {
+    let data = await student_login
+      .find({ parent_id: req.body.parent_id })
+      .populate("studentRegID");
+
+    res.json(data);
   } catch (err) {
     console.log(err);
   }

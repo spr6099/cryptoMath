@@ -12,11 +12,11 @@ import {
 function Footer() {
   return (
     <>
-      <div>
+      {/* <div>
         <div style={{ backgroundColor: "#fffcf7", height: "400px" }}>
           <h5 class="text-center p-5" >map</h5>
         </div>
-      </div>
+      </div> */}
       <MDBFooter className="text-center" color="white" bgColor="dark">
         <MDBContainer className="p-4">
           <section className="mb-4">

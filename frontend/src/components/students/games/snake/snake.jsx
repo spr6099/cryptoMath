@@ -5,7 +5,7 @@ import {
   FaArrowUp,
 } from "react-icons/fa";
 import { useEventListener, useInterval, useLocalStorage } from "usehooks-ts";
-import "./index.css";
+import "./snake.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -76,47 +76,46 @@ export const Snake = ({ onGameEnd }) => {
     setSnakeBody([]);
   }
 
-    const saveGame = async () => {
-      // console.log(datas);
-      try {
-        if (score <= highScore) {
-          let datas = {
-            score: highScore,
-            id: user._id,
-            game: "snake_game",
-          };
-          const res = await axios.post(
-            "http://localhost:4000/student/score",
-            datas,
-            {
-              withCredentials: true,
-            }
-          );
-          const result = res.data;
-          console.log("result", result);
-          window.location.reload();
-        } else {
-          let datas = {
-            score: score,
-            id: user._id,
-            game: "snake_game",
-          };
-          const res = await axios.post(
-            "http://localhost:4000/student/score",
-            datas,
-            {
-              withCredentials: true,
-            }
-          );
-          const result = res.data;
-          console.log("result", result);
-          window.location.reload();
-        }
-      } catch (err) {
-        console.log(err);
+  const saveGame = async () => {
+    // console.log(datas);
+    try {
+      if (score <= highScore) {
+        let datas = {
+          score: highScore,
+          id: user._id,
+          game: "snake_game",
+        };
+        const res = await axios.post(
+          "http://localhost:4000/student/score",
+          datas,
+          {
+            withCredentials: true,
+          }
+        );
+        const result = res.data;
+        console.log("result", result);
+        window.location.reload();
+      } else {
+        let datas = {
+          score: score,
+          id: user._id,
+          game: "snake_game",
+        };
+        const res = await axios.post(
+          "http://localhost:4000/student/score",
+          datas,
+          {
+            withCredentials: true,
+          }
+        );
+        const result = res.data;
+        console.log("result", result);
+        window.location.reload();
       }
-    };
-
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const updateFoodPosition = () => {
     setFoodPosition({
@@ -175,15 +174,15 @@ export const Snake = ({ onGameEnd }) => {
     setSnakePosition(({ x, y }) => ({ x: x + velocity.x, y: y + velocity.y }));
 
     setSnakeBody((oldBody) => {
-      const body = [...oldBody];
+      const bodys = [...oldBody];
 
-      for (let i = body.length - 1; i > 0; i--) {
-        body[i] = body[i - 1];
+      for (let i = bodys.length - 1; i > 0; i--) {
+        bodys[i] = bodys[i - 1];
       }
 
-      body[0] = [snakePosition.x, snakePosition.y]; // Setting first element of snake body to current snake position
+      bodys[0] = [snakePosition.x, snakePosition.y]; // Setting first element of snake body to current snake position
 
-      return body;
+      return bodys;
     });
   }
 
