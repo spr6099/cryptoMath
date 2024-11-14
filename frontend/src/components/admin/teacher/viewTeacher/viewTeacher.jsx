@@ -64,15 +64,107 @@ function ViewTeacher() {
     <>
       <Header />
 
-      <div class="row ">
+      <div className="row ">
         {/*------------------ side bar------------------- */}
+        <div className="col-2" style={{ backgroundColor: "#FFF5CD" }}>
+          <div
+            className="d-flex flex-column flex-shrink-0 p-3   "
+            style={{
+              // width: "200px",
+              minHeight: "550px",
+              // backgroundColor: "#150485",
+            }}
+          >
+            <a
+              href="/"
+              className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+            ></a>
+            <ul className="nav nav-pills flex-column mb-auto">
+              <li className="nav-item">
+                <a
+                  href="#"
+                  className="nav-link link-secondary "
+                  aria-current="page"
+                >
+                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="/admin/viewTeacher" className="nav-link link-active">
+                  <svg className="bi pe-none me-2" width="16" height="16">
+                    {/* <use xlink:href="#table"/> */}
+                  </svg>
+                  Teachers
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16">
+                    {/* <use xlink:href="#grid"/> */}
+                  </svg>
+                  Products
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16">
+                    {/* <use xlink:href="#people-circle"/> */}
+                  </svg>
+                  Customers
+                </a>
+              </li>
+            </ul>
+            {/* <hr> */}
 
+            {/* </div>{" "} */}
+          </div>{" "}
+        </div>
         {/*------------------ View Page -----------------------*/}
         <div
           class="col-10 "
           // style={{ marginLeft: "80px" }}
         >
-          <section class="">
+          <Link
+            class=" btn text-light m-2"
+            to="/admin/addTeacher"
+            style={{ backgroundColor: "#FF4500" }}
+          >
+            Add
+          </Link>
+          <div className="row">
+            {" "}
+            {data.map((item, index) => (
+              <div
+                className=" col-3 card bg-secondary mx-3"
+                style={{ width: "18rem" }}
+              >
+                <img
+                  className="card-img-top border m-auto mt-2 "
+                  src={img + item.regId.image}
+                  alt="Card image cap"
+                  style={{ height: "10rem", width: "10rem" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{item.regId.name}</h5>
+                  <h7 className="card-title">{item.regId.subject}</h7>
+
+                  <p className="card-text"></p>
+                  <a href="/admin/profile" className="btn btn-primary">
+                    View profile
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* <section className="">
             <Link
               class=" btn text-light m-2"
               to="/admin/addTeacher"
@@ -136,7 +228,7 @@ function ViewTeacher() {
                 </>
               ))}
             </table>
-          </section>
+          </section> */}
         </div>
       </div>
       <Footer />

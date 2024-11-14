@@ -37,15 +37,13 @@ function Header() {
         <div>
           <div
             className="d-flex justify-content-between "
-            style={{ backgroundColor: "#245501", height: "50px" }}
+            style={{ backgroundColor: "#245501", height: "30px" }}
           >
             <div>
               <div class="dropdown">
-                <button className="dropbtn btn text-light m-2 ">
-                  <a className="links" href="/">
-                    Home
-                  </a>
-                </button>
+                <a className="links" href="/admin/home">
+                  <button className="dropbtn btn text-light  ">Home</button>
+                </a>
               </div>
 
               <div class="dropdown">
@@ -53,7 +51,7 @@ function Header() {
                 <div class="dropdown-content">
                   <a href="/admin/viewTeacher">View Teacher</a>
                   <a href="/admin/addTeacher"> Add teacher</a>
-                  <a href="#">Link 3</a>
+                  {/* <a href="#">Link 3</a> */}
                 </div>
               </div>
 
@@ -63,8 +61,8 @@ function Header() {
                 <button class="dropbtn btn text-light">Parents</button>
                 <div class="dropdown-content">
                   <a href="/admin/viewParents">View Parents</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+                  {/* <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> */}
                 </div>
               </div>
 
@@ -74,15 +72,13 @@ function Header() {
                 <button class="dropbtn btn text-light">students</button>
                 <div class="dropdown-content">
                   <a href="/admin/viewStudent">view Students</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+                  {/* <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> */}
                 </div>
               </div>
             </div>
             <div
-              style={
-                user === "admin" ? { display: "" } : { display: "none" }
-              }
+              style={user === "admin" ? { display: "" } : { display: "none" }}
             >
               {" "}
               <div class="dropdown text-end">
@@ -95,8 +91,8 @@ function Header() {
                   <img
                     src="https://github.com/mdo.png"
                     alt="mdo"
-                    width="32"
-                    height="32"
+                    width="25"
+                    height="25"
                     class="rounded-circle"
                   />
                 </a>
@@ -127,7 +123,6 @@ function Header() {
                   </li>
                 </ul>
               </div>
-             
             </div>
           </div>
         </div>

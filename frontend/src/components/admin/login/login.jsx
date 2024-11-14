@@ -23,12 +23,12 @@ function Login() {
         withCredentials: true,
       });
       const result = res.data;
-      // console.log("11", result);
+      console.log("11", result);
       // localStorage.setItem("user", JSON.stringify(result));
       localStorage.setItem("user", result);
+        navigate("/admin/home");
 
-      navigate("/admin/home");
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.log("error", err);
     }

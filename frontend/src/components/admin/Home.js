@@ -5,10 +5,10 @@ function Home() {
   return (
     <>
       <Header />
-      <div class="row " style={{ backgroundColor: "#FFF5CD" }}>
-        <div class="col-2">
+      <div className="row " style={{ backgroundColor: "#FFF5CD" }}>
+        <div className="col-2">
           <div
-            class="d-flex flex-column flex-shrink-0 p-3   "
+            className="d-flex flex-column flex-shrink-0 p-3   "
             style={{
               // width: "200px",
               minHeight: "550px",
@@ -17,44 +17,44 @@ function Home() {
           >
             <a
               href="/"
-              class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+              className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
             ></a>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
+            <ul className="nav nav-pills flex-column mb-auto">
+              <li className="nav-item">
                 <a
                   href="#"
-                  class="nav-link link-secondary "
+                  className="nav-link link-secondary "
                   aria-current="page"
                 >
-                  <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
                   Dashboard
                 </a>
               </li>
               <li>
-                <a href="/admin/viewTeacher" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
+                <a href="/admin/viewTeacher" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#table"/> */}
                   </svg>
                   Teacher
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#grid"/> */}
                   </svg>
                   Products
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link link-secondary">
-                  <svg class="bi pe-none me-2" width="16" height="16">
+                <a href="#" className="nav-link link-secondary">
+                  <svg className="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#people-circle"/> */}
                   </svg>
                   Customers
@@ -62,10 +62,10 @@ function Home() {
               </li>
             </ul>
             {/* <hr> */}
-            <div class="dropdown">
+            <div className="dropdown">
               <a
                 href="#"
-                class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle text-light"
+                className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle text-light"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -74,31 +74,31 @@ function Home() {
                   alt=""
                   width="32"
                   height="32"
-                  class="rounded-circle me-2"
+                  className="rounded-circle me-2"
                 />
-                <strong class="text-light">mdo</strong>
+                <strong className="text-light">mdo</strong>
               </a>
-              <ul class="dropdown-menu text-small shadow">
+              <ul className="dropdown-menu text-small shadow">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     New project...
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Settings
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Profile
                   </a>
                 </li>
                 <li>
-                  <hr class="dropdown-divider" />
+                  <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Sign out
                   </a>
                 </li>
@@ -108,7 +108,7 @@ function Home() {
           </div>{" "}
         </div>
 
-        <div class="col-10 ">
+        <div className="col-10 ">
           <h2>hkjk</h2>
         </div>
       </div>

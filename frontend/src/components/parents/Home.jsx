@@ -51,6 +51,7 @@ function Home() {
   return (
     <div>
       <Header />
+      
       <div className="container" style={{ margin: "10px", padding: "20px" }}>
         <div className="row panel panel-success" style={{ marginTop: "2%" }}>
           <div className="panel-heading lead">

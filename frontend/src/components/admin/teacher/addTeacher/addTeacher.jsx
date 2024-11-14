@@ -1,15 +1,30 @@
 import * as React from "react";
-
+import {
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBCard,
+  MDBCardText,
+  MDBCardBody,
+  MDBCardImage,
+  MDBBtn,
+  MDBBreadcrumb,
+  MDBBreadcrumbItem,
+  MDBProgress,
+  MDBProgressBar,
+  MDBInput,
+  MDBTextArea,
+  MDBFile,
+  MDBRadio,
+  MDBIcon,
+  MDBListGroup,
+  MDBListGroupItem,
+} from "mdb-react-ui-kit";
 import { useState } from "react";
 import Footer from "../../partials/Footer";
 import Header from "../../partials/Header";
 import "./addTeacher.css";
 import { useNavigate } from "react-router-dom";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 
 function AddTeacher() {
   const [name, setName] = useState("");
@@ -25,16 +40,6 @@ function AddTeacher() {
   const navigate = useNavigate();
   const FormSubmit = (e) => {
     e.preventDefault();
-    // let datas = {
-    //   name: name,
-    //   dob: dob,
-    //   email: email,
-    //   subject: subject,
-    //   image: image,
-    //   address: address,
-    //   country: country,
-    //   number: number,
-    // };
 
     let datas = new FormData();
     datas.append("name", name);
@@ -48,7 +53,7 @@ function AddTeacher() {
     datas.append("gender", gender);
 
     console.log(datas);
-    
+
     // ---------add Datas---------------
 
     fetch("http://localhost:4000/admin/teacher", {
@@ -69,357 +74,423 @@ function AddTeacher() {
   return (
     <>
       <Header />
-      <div class="row ">
-       
 
-        <div class="col-10  HeaderGradient-custom2">
-          <section class="m-2 ">
-            <div class="container ">
-              <div class="row d-flex justify-content-start align-items-center ">
-                <div class="col-8 ">
-                  <div
-                    class=" card-registration card-registration-2 bg-secondary"
-                    style={{ borderRdius: "15px" }}
-                  >
-                    <div class="card-body p-0 ">
-                      <form class="row g-0" onSubmit={FormSubmit}>
-                        <div class="col-lg-6">
-                          <div class="p-2">
-                            <h3
-                              class="fw-normal mb-3"
-                              //   style={{ color: "#4835d4" }}
-                            >
-                              General Infomation
-                            </h3>
+      <section style={{ backgroundColor: "#eee" }}>
+        <MDBContainer className="py-5">
+          <MDBRow>
+            <MDBCol>
+              <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+                <MDBBreadcrumbItem>
+                  <a href="#">Home</a>
+                </MDBBreadcrumbItem>
+                <MDBBreadcrumbItem>
+                  <a href="#">User</a>
+                </MDBBreadcrumbItem>
+                <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+              </MDBBreadcrumb>
+            </MDBCol>
+          </MDBRow>
 
-                            {/* <div class="mb-4 pb-2 border border-primary">
-                              <select data-mdb-select-init>
-                                <option value="1">Title</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="4">Four</option>
-                              </select>
-                            </div> */}
+          <MDBRow>
+            <MDBCol lg="4">
+              <MDBCard className="mb-4">
+                <MDBCardBody className="text-center">
+                  <MDBCardImage
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    alt="avatar"
+                    className="rounded-circle"
+                    style={{ width: "150px" }}
+                    fluid
+                  />
 
-                            <div class=" mb-4 pb-1 ">
-                              <div data-mdb-input-init>
-                                <input
-                                  type="text"
-                                  label="Name"
-                                  class="form-control form-control-lg border border-white "
-                                  placeholder="Name"
-                                  onChange={(e) => {
-                                    setName(e.target.value);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            {/* <div class="col-md-6 mb-4 pb-2">
-                                <div data-mdb-input-init class="form-outline">
-                                  <input
-                                    type="text"
-                                    class="form-control form-control-lg border border-primary"
-                                    placeholder="Last name"
-                                  />
-                                </div>
-                              </div> */}
-
-                            {/* <div class="mb-4 pb-2 border border-primary ">
-                              <select data-mdb-select-init>
-                                <option value="1">Position</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="4">Four</option>
-                              </select>
-                            </div> */}
-
-                            <div class="mb-4 pb-2">
-                            
-                              <FormControl>
-                                <FormLabel id="demo-row-radio-buttons-group-label">
-                                  Gender
-                                </FormLabel>
-                                <RadioGroup
-                                  row
-                                  aria-labelledby="demo-row-radio-buttons-group-label"
-                                  name="row-radio-buttons-group"
-                                >
-                                  <FormControlLabel
-                                    value="female"
-                                    control={<Radio />}
-                                    label="Female"
-                                    color="red"
-                                    backgroundColor="red"
-                                    onChange={(e) => {
-                                      setGender(e.target.value);
-                                    }}
-                                    required
-                                  />
-                                  <FormControlLabel
-                                    value="male"
-                                    control={<Radio />}
-                                    label="Male"
-                                    onChange={(e) => {
-                                      setGender(e.target.value);
-                                    }}
-                                    required
-                                  />
-                                </RadioGroup>
-                              </FormControl>
-                            </div>
-
-                            <div class="mb-4 pb-2">
-                              <div data-mdb-input-init class="form-outline">
-                                <input
-                                  type="date"
-                                  class="form-control form-control-lg"
-                                  placeholder=""
-                                  onChange={(e) => {
-                                    setDOB(e.target.value);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            <div class="mb-4 pb-2">
-                              <div data-mdb-input-init class="form-outline">
-                                <input
-                                  type="text"
-                                  class="form-control form-control-lg"
-                                  placeholder="Subject"
-                                  onChange={(e) => {
-                                    setSubject(e.target.value);
-                                  }}
-                                />
-                              </div>
-                            </div>
-                            <div class="mb-4 pb-2">
-                              <div data-mdb-input-init class="form-outline">
-                                <input
-                                  type="file"
-                                  class="form-control form-control-lg"
-                                  placeholder=""
-                                  onChange={(e) => {
-                                    setImage(e.target.files[0]);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-                            {/* <div class="row">
-                              <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
-                                <div data-mdb-input-init class="form-outline">
-                                  <input
-                                    type="text"
-                                    id="form3Examplev5"
-                                    class="form-control form-control-lg"
-                                    placeholder=" Bussines Arena"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-md-6 border border-primary ">
-                                <select data-mdb-select-init>
-                                  <option value="1">Employees</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                  <option value="4">Four</option>
-                                </select>
-                              </div>
-                            </div> */}
-                          </div>
-                        </div>
-                        <div class="col-lg-6 bg-indigo text-white">
-                          <div class="p-3">
-                            <h3 class="fw-normal mb-3">Contact Details</h3>
-
-                            {/* <div class="mb-4 pb-2">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Street + Nr"
-                                  class="form-control form-control-lg"
-                                />
-                              </div>
-                            </div>
-
-                            <div class="mb-4 pb-2">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Additional Information"
-                                  class="form-control form-control-lg"
-                                />
-                              </div>
-                            </div> */}
-
-                            {/* <div class="row">
-                              <div class="col-md-5 mb-4 pb-2">
-                                <div
-                                  data-mdb-input-init
-                                  class="form-outline form-white"
-                                >
-                                  <input
-                                    type="text"
-                                    placeholder="Zip Code"
-                                    class="form-control form-control-lg"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-md-7 mb-4 pb-2">
-                                <div
-                                  data-mdb-input-init
-                                  class="form-outline form-white"
-                                >
-                                  <input
-                                    type="text"
-                                    placeholder="Place"
-                                    class="form-control form-control-lg"
-                                  />
-                                </div>
-                              </div>
-                            </div> */}
-                            <div class="mb-3 pb-2">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <textarea
-                                  class="form-control form-control-lg"
-                                  placeholder="Address"
-                                  onChange={(e) => {
-                                    setAddress(e.target.value);
-                                  }}
-                                  required
-                                ></textarea>
-                              </div>
-                            </div>
-
-                            <div class="mb-4 pb-2">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Password"
-                                  class="form-control form-control-lg"
-                                  onChange={(e) => {
-                                    setPassword(e.target.value);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            <div class="mb-3">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <input
-                                  type="number"
-                                  placeholder="Phone Number"
-                                  class="form-control form-control-lg"
-                                  onChange={(e) => {
-                                    setNumber(e.target.value);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            {/* <div class="row">
-                              <div class="col-md-5 mb-4 pb-2">
-                                <div
-                                  data-mdb-input-init
-                                  class="form-outline form-white"
-                                >
-                                  <input
-                                    type="text"
-                                    placeholder="Code +"
-                                    class="form-control form-control-lg"
-                                  />
-                                </div>
-                              </div>
-                              <div class="col-md-7 mb-4 pb-2">
-                                <div
-                                  data-mdb-input-init
-                                  class="form-outline form-white"
-                                >
-                                  <input
-                                    type="text"
-                                    placeholder="Phone Number"
-                                    class="form-control form-control-lg"
-                                  />
-                                </div>
-                              </div>
-                            </div> */}
-
-                            <div class="mb-4">
-                              <div
-                                data-mdb-input-init
-                                class="form-outline form-white"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Your Email"
-                                  class="form-control form-control-lg"
-                                  onChange={(e) => {
-                                    setEmail(e.target.value);
-                                  }}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                              <input
-                                class="form-check-input me-3"
-                                type="checkbox"
-                                value=""
-                                id="form2Example3c"
-                              />
-                              <label
-                                class="form-check-label text-white"
-                                for="form2Example3"
-                              >
-                                I do accept the{" "}
-                                <a href="#!" class="text-white">
-                                  <u>Terms and Conditions</u>
-                                </a>{" "}
-                                of your site.
-                              </label>
-                            </div>
-
-                            <button
-                              type="submit"
-                              // data-mdb-button-init
-                              // data-mdb-ripple-init
-                              class="btn btn-light btn-lg"
-                              // data-mdb-ripple-color="dark"
-                            >
-                              Register
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                
+                  <div className="d-flex justify-content-center mb-2">
+                    <MDBFile
+                      label="Choose file"
+                      id="image"
+                      className="mb-2"
+                      onChange={(e) => {
+                        setImage(e.target.files[0]);
+                      }}
+                      required
+                    />
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+                </MDBCardBody>
+              </MDBCard>
+
+              <MDBCard className="mb-4 mb-lg-0">
+                <MDBCardBody className="p-0">
+                  <MDBCard className="mb-4">
+                    <MDBCardBody>
+                      <MDBRow>
+                        <MDBCol sm="3">
+                          <MDBCardText>Subject</MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="9">
+                          <MDBInput
+                            label="Subject"
+                            id="subject"
+                            type="text"
+                            onChange={(e) => {
+                              setSubject(e.target.value);
+                            }}
+                            className=""
+                            required
+                          />
+                        </MDBCol>
+                      </MDBRow>
+                      <hr />
+                      <MDBRow>
+                        <MDBCol sm="3">
+                          <MDBCardText>Gender</MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="9">
+                          <div className="">
+                            <MDBRadio
+                              name="gender"
+                              id="male"
+                              label="Male"
+                              value="male"
+                              onChange={(e) => {
+                                setGender(e.target.value);
+                              }}
+                              required
+                            />
+                            <MDBRadio
+                              name="gender"
+                              id="female"
+                              label="Female"
+                              value="female"
+                              onChange={(e) => {
+                                setGender(e.target.value);
+                              }}
+                              required
+                            />
+                            <MDBRadio
+                              name="gender"
+                              id="other"
+                              label="Other"
+                              value="other"
+                              onChange={(e) => {
+                                setGender(e.target.value);
+                              }}
+                              required
+                            />
+                          </div>
+                        </MDBCol>
+                      </MDBRow>
+                      <hr />
+                      <MDBRow>
+                        <MDBCol sm="3">
+                          <MDBCardText>Password</MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="9">
+                          <MDBInput
+                            label="Password"
+                            id="password"
+                            type="password"
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                            className=""
+                            required
+                          />
+                        </MDBCol>
+                      </MDBRow>
+                      <hr />
+                      <MDBRow>
+                        <MDBCol sm="3">
+                          <MDBCardText>Mobile</MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="9">
+                          <MDBCardText className="text-muted">
+                            (098) 765-4321
+                          </MDBCardText>
+                        </MDBCol>
+                      </MDBRow>
+                      <hr />
+                      <MDBRow>
+                        <MDBCol sm="3">
+                          <MDBCardText>Address</MDBCardText>
+                        </MDBCol>
+                        <MDBCol sm="9">
+                          <MDBCardText className="text-muted">
+                            Bay Area, San Francisco, CA
+                          </MDBCardText>
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+            <MDBCol lg="8">
+              <MDBCard className="mb-4">
+                <MDBCardBody>
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Full Name</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBInput
+                        label="Username"
+                        id="username"
+                        type="text"
+                        className=""
+                        onChange={(e) => {
+                          setName(e.target.value);
+                        }}
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Email</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBInput
+                        label="Email"
+                        id="email"
+                        type="text"
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                        className=""
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Phone</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBInput
+                        label="Phone"
+                        id="phone"
+                        type="number"
+                        className=""
+                        onChange={(e) => {
+                          setNumber(e.target.value);
+                        }}
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>DOB</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBInput
+                        label="Date of Birth"
+                        id="dob"
+                        type="date" // Date picker input
+                        className=""
+                        onChange={(e) => {
+                          setDOB(e.target.value);
+                        }}
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Address</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBTextArea
+                        label="Address"
+                        id="address"
+                        rows={4}
+                        className=""
+                        onChange={(e) => {
+                          setAddress(e.target.value);
+                        }}
+                        required
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+
+              <MDBRow>
+                <MDBCol md="6">
+                  <MDBCard className="mb-4 mb-md-0">
+                    <MDBCardBody>
+                      <MDBCardText className="mb-4">
+                        <span className="text-primary font-italic me-1">
+                          {/* assigment */}
+                        </span>{" "}
+                        Allocated Students
+                      </MDBCardText>
+                      <MDBCardText
+                        className="mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Web Design
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={80}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Website Markup
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={72}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        One Page
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={89}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Mobile Template
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={55}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Backend API
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={66}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCol>
+
+                <MDBCol md="6">
+                  <MDBCard className="mb-4 mb-md-0">
+                    <MDBCardBody>
+                      <MDBCardText className="mb-4">
+                        <span className="text-primary font-italic me-1">
+                          assigment
+                        </span>{" "}
+                        Project Status
+                      </MDBCardText>
+                      <MDBCardText
+                        className="mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Web Design
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={80}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Website Markup
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={72}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        One Page
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={89}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Mobile Template
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={55}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+
+                      <MDBCardText
+                        className="mt-4 mb-1"
+                        style={{ fontSize: ".77rem" }}
+                      >
+                        Backend API
+                      </MDBCardText>
+                      <MDBProgress className="rounded">
+                        <MDBProgressBar
+                          width={66}
+                          valuemin={0}
+                          valuemax={100}
+                        />
+                      </MDBProgress>
+                    </MDBCardBody>
+                  </MDBCard>
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+          </MDBRow>
+          <MDBBtn color="primary" type="submit" onClick={FormSubmit}>
+            Save
+          </MDBBtn>
+        </MDBContainer>
+      </section>
       <Footer />
     </>
   );

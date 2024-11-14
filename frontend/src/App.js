@@ -22,20 +22,24 @@ import { StudentLayout } from "./components/layout/studentLayout";
 import Games from "./components/students/games/game";
 import TicTacToe from "./components/students/games/tic-tac/index";
 import Snake from "./components/students/games/snake/snake";
-
+import ProfilePage from "./components/admin/teacher/viewTeacher/profile";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}></Route>
+
           <Route path="/admin/login" element={<AdminLogin />}></Route>
 
           <Route path="/admin" element={<AdminLayout />}>
+            {/* <Route path="/admin/login" element={<Home />}></Route> */}
+
             <Route path="home" element={<Home />}></Route>
             <Route path="viewTeacher" element={<ViewTeacher />} />
             <Route path="addTeacher" element={<AddTeacher />} />
             <Route path="editTeacher" element={<EditTeacher />} />
+            <Route path="profile" element={<ProfilePage />}></Route>
             <Route path="viewParents" element={<ViewParents />}></Route>
             <Route path="viewStudent" element={<ViewStudents />}></Route>
           </Route>
