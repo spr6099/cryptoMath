@@ -66,6 +66,8 @@ exports.login = async (req, res) => {
 };
 
 exports.studentRegister = async (req, res) => {
+  console.log(req.body);
+  
   try {
     let register_datas = {
       name: req.body.name,
@@ -73,13 +75,15 @@ exports.studentRegister = async (req, res) => {
       relation: req.body.relation,
       gender: req.body.gender,
       pin: req.body.pin,
+      image: req.files.image.name,
       course: req.body.course,
       email: req.body.email,
       password: req.body.password,
     };
 
-    console.log(register_datas);
-
+    // console.log(register_datas);
+    let fileup = req.files.image;
+    await fileup.mv("public/students/" + register_datas.image);
     let studentRegister = await student_register.create(register_datas);
 
     let login_datas = {

@@ -156,9 +156,19 @@ function ViewTeacher() {
                   <h7 className="card-title">{item.regId.subject}</h7>
 
                   <p className="card-text"></p>
-                  <a href="/admin/profile" className="btn btn-primary">
+                  <a
+                    href={`/admin/profile/${item._id}`}
+                    className="btn btn-primary"
+                  >
                     View profile
                   </a>
+                  <Link
+                    to="/admin/allocate_students"
+                    state={{ id: item._id }}
+                    className="btn btn-primary mt-2"
+                  >
+                    allocate students
+                  </Link>
                 </div>
               </div>
             ))}

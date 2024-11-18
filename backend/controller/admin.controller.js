@@ -6,8 +6,8 @@ exports.login = async (req, res) => {
     name: req.body.name,
     password: req.body.password,
   };
-  console.log("qq",logindata);
-  
+  console.log("qq", logindata);
+
   try {
     req.session.save((err) => {
       if (err) console.log("Error saving session", err);
@@ -17,7 +17,7 @@ exports.login = async (req, res) => {
       if (logindata.password == "123") {
         req.session.user = logindata.name;
         // let data = req.session.admin;
-        console.log("req.session",req.session.user);
+        console.log("req.session", req.session.user);
 
         res.json(req.session.user);
       } else {
@@ -32,6 +32,8 @@ exports.login = async (req, res) => {
 };
 
 exports.teacher = async (req, res) => {
+  console.log(req.files);
+
   try {
     let datas = {
       name: req.body.name,
@@ -70,6 +72,18 @@ exports.viewTeacher = async (req, res) => {
   }
 };
 
+exports.teacher_profile = async (req, res) => {
+  let { id } = req.body;
+  try {
+    let data = await TeacherLogin.findById(id).populate("regId");
+    console.log("zzz", data);
+
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 exports.deleteTeacher = async (req, res) => {
   let id = req.body.id;
   try {
@@ -86,6 +100,8 @@ exports.deleteTeacher = async (req, res) => {
 
 exports.editTeacher = async (req, res) => {
   let id = req.body.id;
+  // console.log("zz",id);
+
   try {
     // console.log("zz",id);
 
@@ -100,10 +116,7 @@ exports.editTeacher = async (req, res) => {
 
 exports.updateTeacher = async (req, res) => {
   console.log("loginid", req.body.id);
-
-  // let logDb = await TeacherLogin.findById(req.body.id);
-  // let regId = logDb.regId;
-  // console.log("regId", regId);
+  console.log("loginid", req.body);
 
   try {
     if (req.files?.image) {

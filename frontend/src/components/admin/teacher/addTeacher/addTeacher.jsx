@@ -224,7 +224,7 @@ function AddTeacher() {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol lg="8">
+            <MDBCol lg="6">
               <MDBCard className="mb-4">
                 <MDBCardBody>
                   <MDBRow>

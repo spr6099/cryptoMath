@@ -33,6 +33,7 @@ const student_regSchema = mongoose.Schema({
   dob: { type: String, required: true },
   relation: { type: String, required: true },
   pin: { type: String, required: true },
+  image: { type: String, required: true },
   course: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },

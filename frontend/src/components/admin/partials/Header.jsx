@@ -107,11 +107,11 @@ function Header() {
                       Settings
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a class="dropdown-item" href="#">
                       Profile
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <hr class="dropdown-divider" />
                   </li>

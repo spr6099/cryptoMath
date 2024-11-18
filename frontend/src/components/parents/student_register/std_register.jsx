@@ -32,6 +32,8 @@ function Register() {
 
   const navigate = useNavigate("");
 
+  const [image, setImage] = useState("");
+
   const SubmitForm = (e) => {
     e.preventDefault();
     let datas = new FormData();
@@ -39,6 +41,7 @@ function Register() {
     datas.append("dob", dob);
     datas.append("relation", relation);
     datas.append("gender", gender);
+    datas.append("image", image);
     datas.append("pin", pin);
     datas.append("email", email);
     datas.append("course", course);
@@ -159,13 +162,14 @@ function Register() {
 
                     <MDBRow>
                       <MDBCol md="6">
-                        <select className="form-select mb-4" size="lg">
-                          <option value="1">Relation</option>
-                          <option value="2">father</option>
-                          <option value="3">Mother</option>
-                          <option value="4">Guardian</option>
-                          <option value="4">Other</option>
-                        </select>
+                        <MDBInput
+                          wrapperClass="mb-4"
+                          label="Pincode"
+                          size="lg"
+                          id="form4"
+                          type="text"
+                          onChange={(e) => setPin(e.target.value)}
+                        />
                       </MDBCol>
 
                       <MDBCol md="6">
@@ -179,13 +183,15 @@ function Register() {
                       </MDBCol>
                     </MDBRow>
                     <MDBInput
-                      wrapperClass="mb-4"
-                      label="Pincode"
+                      wrapperClass="mb-4  "
+                      // label="Pincode"
                       size="lg"
                       id="form4"
-                      type="text"
-                      onChange={(e) => setPin(e.target.value)}
+                      type="file"
+                      onChange={(e) => setImage(e.target.files[0])}
                     />
+                    {/* {fileName && <p>Selected file: {fileName}</p>} */}
+
                     <MDBInput
                       wrapperClass="mb-4"
                       label="Course"
