@@ -47,34 +47,27 @@ function Header() {
               </div>
 
               <div class="dropdown">
-                <button class="dropbtn btn text-light">Teacher</button>
-                <div class="dropdown-content">
-                  <a href="/admin/viewTeacher">View Teacher</a>
-                  <a href="/admin/addTeacher"> Add teacher</a>
-                  {/* <a href="#">Link 3</a> */}
-                </div>
+                <a href="/admin/viewTeacher" className="btn text-light">
+                  Teacher
+                </a>
               </div>
 
               {/* ---------Parents--------- */}
 
               <div class="dropdown">
-                <button class="dropbtn btn text-light">Parents</button>
-                <div class="dropdown-content">
-                  <a href="/admin/viewParents">View Parents</a>
-                  {/* <a href="#">Link 2</a>
+                <a href="/admin/viewParents" className="btn text-light">
+                  Parents
+                </a>
+                {/* <a href="#">Link 2</a>
                   <a href="#">Link 3</a> */}
-                </div>
               </div>
 
               {/* ------Students------ */}
 
               <div class="dropdown">
-                <button class="dropbtn btn text-light">students</button>
-                <div class="dropdown-content">
-                  <a href="/admin/viewStudent">view Students</a>
-                  {/* <a href="#">Link 2</a>
-                  <a href="#">Link 3</a> */}
-                </div>
+                <a href="/admin/viewStudent" className="btn text-light">
+                  view Students
+                </a>
               </div>
             </div>
             <div

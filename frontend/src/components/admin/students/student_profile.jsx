@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import Footer from "../../partials/Footer";
-import Header from "../../partials/Header";
-import "./viewTeacher.css";
-import img from "./imgUrl";
-import React from "react";
+import { useLocation } from "react-router-dom";
+import Footer from "../partials/Footer";
+import Header from "../partials/Header";
 import {
   MDBCol,
   MDBContainer,
@@ -22,143 +19,78 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Img from "./imgUrl";
 
-function ProfilePage() {
-  // const [data, setData] = useState([]);
+function Student_profile() {
+  const location = useLocation();
   const [name, setName] = useState("");
-  const [dob, setDOB] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [dob, setDOB] = useState("");
   const [image, setImage] = useState("");
-  const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [number, setNumber] = useState("");
-  const [gender, setGender] = useState("");
-  const { id } = useParams();
-  const [std, setStd] = useState([]);
+  const [tid, setTid] = useState("");
+  const [teacher, setTeacher] = useState([]);
+  const [teach, setTeach] = useState("");
 
-  // console.log(id);
-  let uid = {
-    id: id,
+  let student_id = {
+    id: location.state.id,
   };
+
   useEffect(() => {
-    fetch("http://localhost:4000/admin/teacher_profile", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(uid),
-    })
+    fetch("http://localhost:4000/admin/selectTeacher")
       .then((res) => res.json())
       .then((result) => {
-        console.log("rr", result);
-
-        setName(result.regId.name);
-        setDOB(result.regId.dob);
-        setEmail(result.email);
-        setSubject(result.regId.subject);
-        setImage(result.regId.image);
-        setAddress(result.regId.address);
-        setPassword(result.password);
-        setNumber(result.regId.number);
-        setGender(result.regId.gender);
-        setStd(result.students);
-        // setTid(result._id);
+        console.log("teacher", result);
+        setTeacher(result);
       });
+    const Fetchstd = async () => {
+      const res = await axios.post(
+        "http://localhost:4000/admin/student_profile",
+        student_id,
+        {
+          withCredentials: true,
+        }
+      );
+      const result = res.data;
+      setName(result.studentRegID.name);
+      setEmail(result.email);
+      setDOB(result.studentRegID.dob);
+      setImage(result.studentRegID.image);
+      setTid(result._id);
+      setTeach(result.teacher);
+    };
+    Fetchstd();
   }, []);
 
-  // --------------Delete----------------------
-
-  //   const Delete = (delId) => {
-  //     let id = {
-  //       id: delId,
-  //     };
-  //     fetch("http://localhost:4000/admin/deleteTeacher", {
-  //       method: "post",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(id),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((result) => {
-  //         console.log(result);
-  //         window.location.reload();
-  //       });
-  //   };
+  const handleTeacherChange = async (e) => {
+    e.preventDefault();
+    const datas = {
+      id: tid,
+      teacher_id: e.target.value,
+    };
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/admin/allocate_teacher",
+        datas,
+        {
+          withCredentials: true,
+        }
+      );
+      const result = res.data;
+      console.log(result);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
       <Header />
-
       <div className="row ">
-        {/*------------------ side bar------------------- */}
-        <div className="col-2" style={{ backgroundColor: "#FFF5CD" }}>
-          <div
-            className="d-flex flex-column flex-shrink-0 p-3   "
-            style={{
-              // width: "200px",
-              minHeight: "550px",
-              // backgroundColor: "#150485",
-            }}
-          >
-            <a
-              href="/"
-              className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-            ></a>
-            <ul className="nav nav-pills flex-column mb-auto">
-              <li className="nav-item">
-                <a
-                  href="#"
-                  className="nav-link link-secondary "
-                  aria-current="page"
-                >
-                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`/admin/teacher/students/${id}`}
-                  className="nav-link link-active"
-                >
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#table"/> */}
-                  </svg>
-                  Students
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#grid"/> */}
-                  </svg>
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#people-circle"/> */}
-                  </svg>
-                  Customers
-                </a>
-              </li>
-            </ul>
-          </div>{" "}
-        </div>
         {/*------------------ View Page -----------------------*/}
         <div className="col-10">
-          {/* {data.map((item, index) => ( */}
           <section style={{ backgroundColor: "#eee" }}>
             <MDBContainer className="py-5">
               <MDBRow>
@@ -175,9 +107,9 @@ function ProfilePage() {
                 </MDBCol>
                 <MDBCol>
                   <MDBBtn className="me-2">delete</MDBBtn>
-                  <a href={`/admin/editTeacher/${id}`}>
+                  {/* <a href={`/admin/editTeacher/${id}`}>
                     <MDBBtn className="me-2">Edit</MDBBtn>
-                  </a>
+                  </a> */}
                 </MDBCol>
                 {/* <MDBNavbarLink href="/">Home</MDBNavbarLink> */}
               </MDBRow>
@@ -187,7 +119,7 @@ function ProfilePage() {
                   <MDBCard className="mb-4">
                     <MDBCardBody className="text-center">
                       <MDBCardImage
-                        src={img + image}
+                        src={Img + image}
                         alt="avatar"
                         className="rounded-circle"
                         style={{ width: "150px" }}
@@ -216,7 +148,7 @@ function ProfilePage() {
                             </MDBCol>
                             <MDBCol sm="9">
                               <MDBCardText className="text-muted">
-                                {subject}
+                                {/* {name} */}
                               </MDBCardText>
                             </MDBCol>
                           </MDBRow>
@@ -238,7 +170,7 @@ function ProfilePage() {
                             </MDBCol>
                             <MDBCol sm="9">
                               <MDBCardText className="text-muted">
-                                {gender}
+                                {/* {gender} */}
                               </MDBCardText>
                             </MDBCol>
                           </MDBRow>
@@ -299,9 +231,7 @@ function ProfilePage() {
                           <MDBCardText>Phone</MDBCardText>
                         </MDBCol>
                         <MDBCol sm="9">
-                          <MDBCardText className="text-muted">
-                            {number}
-                          </MDBCardText>
+                          <MDBCardText className="text-muted"></MDBCardText>
                         </MDBCol>
                       </MDBRow>
                       <hr />
@@ -321,9 +251,7 @@ function ProfilePage() {
                           <MDBCardText>Address</MDBCardText>
                         </MDBCol>
                         <MDBCol sm="9">
-                          <MDBCardText className="text-muted">
-                            {address}
-                          </MDBCardText>
+                          <MDBCardText className="text-muted"></MDBCardText>
                         </MDBCol>
                       </MDBRow>
                     </MDBCardBody>
@@ -335,11 +263,11 @@ function ProfilePage() {
                         <MDBCardBody>
                           <MDBCardText className="mb-4">
                             <span className="text-primary font-italic me-1">
-                              {/* assigment */}
+                              Allocated{" "}
                             </span>{" "}
-                            Allocated Students
+                            Teacher{" "}
                           </MDBCardText>
-                          {std}
+                          {teach}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -353,8 +281,23 @@ function ProfilePage() {
                             </span>{" "}
                             Students
                           </MDBCardText>
-
-                          {/* <button className="btn">submit</button> */}
+                          <select
+                            // value={selectedTeacher}
+                            onChange={handleTeacherChange}
+                            className="form-select"
+                          >
+                            {" "}
+                            {/* {students.length === 0 ? (
+                          <option value="">No students available</option> // This will show when there are no students
+                        ) : ( <option value="">Select Student</option>
+                        ) */}
+                            <option value="">Select Teacher</option>
+                            {teacher.map((item, index) => (
+                              <option value={item._id}>
+                                {item.regId.name}
+                              </option>
+                            ))}
+                          </select>{" "}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -371,4 +314,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default Student_profile;

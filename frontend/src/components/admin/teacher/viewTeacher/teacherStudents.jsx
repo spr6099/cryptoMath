@@ -1,15 +1,34 @@
-import { useState } from "react";
-import Footer from "./partials/Footer";
-import Header from "./partials/Header";
-// import "./TeacherHome.css";
-function Home() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  console.log(user._id);
+import { useEffect, useState } from "react";
+import Footer from "../../partials/Footer";
+import Header from "../../partials/Header";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Img from "../../students/imgUrl";
 
+function Students() {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+
+  let teacher_id = {
+    id: id,
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.post(
+        "http://localhost:4000/admin/viewTeacher_students",
+        teacher_id,
+        { withCredentials: true }
+      );
+      const result = res.data;
+      setData(result);
+      console.log("//", result);
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <Header />
-      <div class="row " style={{ backgroundColor: "#EAE7DC" }}>
+      <div className="row">
         <div className="col-2" style={{ backgroundColor: "#FFF5CD" }}>
           <div
             className="d-flex flex-column flex-shrink-0 p-3   "
@@ -41,10 +60,7 @@ function Home() {
                 </a>
               </li>
               <li>
-                <a
-                  href={`/teacher/students/${user._id}`}
-                  className="nav-link link-active"
-                >
+                <a href="" className="nav-link link-active">
                   <svg className="bi pe-none me-2" width="16" height="16">
                     {/* <use xlink:href="#table"/> */}
                   </svg>
@@ -70,13 +86,46 @@ function Home() {
             </ul>
           </div>{" "}
         </div>
-        <div class="col-10  ">
-          <h2>Home</h2>
+        <div className="col-6">
+          <div className="row">
+            {" "}
+            {data.map((item, index) => (
+              <div
+                className=" col-3 card bg-secondary mx-3 mb-3"
+                style={{ width: "18rem" }}
+              >
+                <img
+                  className="card-img-top border m-auto mt-2 "
+                  src={Img + item.studentRegID.image}
+                  alt="Card image cap"
+                  style={{ height: "10rem", width: "10rem" }}
+                />
+                <div className="card-body">
+                  {/* <h5 className="card-title">{item.regId.name}</h5>
+                  <h7 className="card-title">{item.regId.subject}</h7> */}
+
+                  <p className="card-text"></p>
+                  <a
+                    // href={`/admin/profile/${item._id}`}
+                    className="btn btn-primary"
+                  >
+                    View profile
+                  </a>
+                  {/* <Link
+                    to="/admin/allocate_students"
+                    state={{ id: item._id }}
+                    className="btn btn-primary mt-2"
+                  >
+                    allocate students
+                  </Link> */}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
     </>
   );
 }
-
-export default Home;
+export default Students;

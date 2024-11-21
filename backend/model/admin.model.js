@@ -24,6 +24,7 @@ const loginSchema = mongoose.Schema({
   password: { type: String, required: true },
   regId: { type: mongoose.Schema.Types.ObjectId, ref: "teacher_registers" },
   status: { type: String, required: true },
+  students: { type: String },
   createdAt: { type: Date, default: Date.now() },
 });
 

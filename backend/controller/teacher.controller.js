@@ -1,4 +1,5 @@
 const { teacherRegDb, TeacherLogin } = require("../model/admin.model");
+const { student_login } = require("../model/parents.model");
 
 exports.login = async (req, res) => {
   let loginData = {
@@ -23,6 +24,20 @@ exports.login = async (req, res) => {
       // console.log("Incorrect User");
     }
     // console.log("teacherq", data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+exports.students = async (req, res) => {
+  console.log(req.body.id);
+
+  try {
+    let data = await student_login
+      .find({ teacher: req.body.id })
+      .populate("studentRegID");
+    res.json(data);
   } catch (err) {
     console.log(err);
   }

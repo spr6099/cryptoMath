@@ -182,3 +182,54 @@ exports.viewStudents = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.student_profile = async (req, res) => {
+  try {
+    const data = await student_login
+      .findById(req.body.id) // output as an object
+      // .find({_id:req.body.id})   // output as an array
+      .populate("studentRegID");
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.selectTeacher = async (req, res) => {
+  try {
+    let data = await TeacherLogin.find().populate("regId");
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.allocate_teacher = async (req, res) => {
+  // const datas = {
+  //   students: req.body.student_id,
+  // };
+
+  console.log("...", req.body);
+
+  try {
+    await student_login.findByIdAndUpdate(req.body.id, {
+      teacher: req.body.teacher_id,
+    });
+    res.send("helloww");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.viewTeacher_students = async (req, res) => {
+  console.log(req.body.id);
+
+  try {
+    let data = await student_login
+      .find({ teacher: req.body.id })
+      .populate("studentRegID");
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -12,7 +12,7 @@ import { Height } from "@mui/icons-material";
 
 function ViewStudents() {
   const [data, setData] = useState([]);
- 
+
   useEffect(() => {
     fetch("http://localhost:4000/admin/viewStudents")
       .then((res) => res.json())
@@ -20,10 +20,7 @@ function ViewStudents() {
         console.log("studentsss", result);
         setData(result);
       });
-   
   }, []);
-
- 
 
   return (
     <>
@@ -43,23 +40,24 @@ function ViewStudents() {
                 {data.map((item, index) => (
                   <>
                     <Card className="col-2" style={{ width: "18rem" }}>
-                      <Card.Body>
-                        <Card.Img
-                          variant="top"
-                          src={Img + item.studentRegID.image}
-                          style={{ height: "100px", width: "100px" }}
-                        />
-
-                        <Card.Title>{item.studentRegID.name}</Card.Title>
-                        {/* <Card.Text>
+                      <Link
+                        to="/admin/student_profile"
+                        state={{ id: item._id }}
+                      >
+                        <Card.Body>
+                          <Card.Img
+                            variant="top"
+                            src={Img + item.studentRegID.image}
+                            style={{ height: "100px", width: "100px" }}
+                          />
+                          <Card.Title>{item.studentRegID.name}</Card.Title>
+                          {/* <Card.Text>
                           Some quick example text to build on the card title and
                           make up the bulk of the card's content.
                         </Card.Text> */}
-                        <p>Teacher:</p>
-
-                       
-                        <Button variant="primary">Go somewhere</Button>
-                      </Card.Body>
+                          <p>Teacher:{item.teacher}</p>
+                        </Card.Body>
+                      </Link>{" "}
                     </Card>
                   </>
                 ))}

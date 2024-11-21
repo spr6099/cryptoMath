@@ -23,7 +23,10 @@ import Games from "./components/students/games/game";
 import TicTacToe from "./components/students/games/tic-tac/index";
 import Snake from "./components/students/games/snake/snake";
 import ProfilePage from "./components/admin/teacher/viewTeacher/profile";
-import Allocate_students from "./components/admin/teacher/editTeacher/allocate_students";
+import Student_profile from "./components/admin/students/student_profile";
+import Teacher_Students from "./components/admin/teacher/viewTeacher/teacherStudents";
+import Students from "./components/teacher/components/students";
+
 function App() {
   return (
     <>
@@ -40,11 +43,10 @@ function App() {
             <Route path="viewTeacher" element={<ViewTeacher />} />
             <Route path="addTeacher" element={<AddTeacher />} />
             <Route path="editTeacher/:id" element={<EditTeacher />} />
-            <Route path="profile/:id" element={<ProfilePage />}></Route>
-            <Route
-              path="allocate_students"
-              element={<Allocate_students />}
-            ></Route>
+            <Route path="profile/:id" element={<ProfilePage />} />
+            <Route path="teacher/students/:id" element={<Teacher_Students />} />
+
+            <Route path="student_profile" element={<Student_profile />} />
             <Route path="viewParents" element={<ViewParents />}></Route>
             <Route path="viewStudent" element={<ViewStudents />}></Route>
           </Route>
@@ -53,6 +55,7 @@ function App() {
 
           <Route path="/teacher" element={<TeacherLayout />}>
             <Route path="home" element={<TeacherHome />}></Route>
+            <Route path="students/:id" element={<Students />} />
           </Route>
 
           <Route path="/parents/home" element={<ParentsHome />}></Route>

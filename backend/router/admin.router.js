@@ -11,6 +11,11 @@ router.post("/deleteTeacher", adminController.deleteTeacher);
 router.post("/editTeacher", adminController.editTeacher);
 router.post("/updateTeacher", adminController.updateTeacher);
 router.get("/viewStudents", adminController.viewStudents);
-router.get("/viewParents", adminController.viewParents);
+router.post("/student_profile", adminController.student_profile);
 
+router.get("/selectTeacher", adminController.selectTeacher);
+
+router.get("/viewParents", adminController.viewParents);
+router.post("/allocate_teacher", adminController.allocate_teacher);
+router.post("/viewTeacher_students", adminController.viewTeacher_students);
 module.exports = router;

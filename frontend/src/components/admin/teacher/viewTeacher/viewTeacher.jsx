@@ -14,7 +14,7 @@ function ViewTeacher() {
     fetch("http://localhost:4000/admin/viewTeacher")
       .then((res) => res.json())
       .then((result) => {
-        console.log("Getproduct", result);
+        // console.log("viewTeacher", result);
         setData(result);
       });
   }, []);
@@ -35,7 +35,7 @@ function ViewTeacher() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         window.location.reload();
       });
   };
@@ -55,7 +55,7 @@ function ViewTeacher() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         window.location.reload();
       });
   };
@@ -66,66 +66,7 @@ function ViewTeacher() {
 
       <div className="row ">
         {/*------------------ side bar------------------- */}
-        <div className="col-2" style={{ backgroundColor: "#FFF5CD" }}>
-          <div
-            className="d-flex flex-column flex-shrink-0 p-3   "
-            style={{
-              // width: "200px",
-              minHeight: "550px",
-              // backgroundColor: "#150485",
-            }}
-          >
-            <a
-              href="/"
-              className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-            ></a>
-            <ul className="nav nav-pills flex-column mb-auto">
-              <li className="nav-item">
-                <a
-                  href="#"
-                  className="nav-link link-secondary "
-                  aria-current="page"
-                >
-                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16"></svg>
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="/admin/viewTeacher" className="nav-link link-active">
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#table"/> */}
-                  </svg>
-                  Teachers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#grid"/> */}
-                  </svg>
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="#" className="nav-link link-secondary">
-                  <svg className="bi pe-none me-2" width="16" height="16">
-                    {/* <use xlink:href="#people-circle"/> */}
-                  </svg>
-                  Customers
-                </a>
-              </li>
-            </ul>
-            {/* <hr> */}
-
-            {/* </div>{" "} */}
-          </div>{" "}
-        </div>
+       
         {/*------------------ View Page -----------------------*/}
         <div
           class="col-10 "
@@ -142,7 +83,7 @@ function ViewTeacher() {
             {" "}
             {data.map((item, index) => (
               <div
-                className=" col-3 card bg-secondary mx-3"
+                className=" col-3 card bg-secondary mx-3 mb-3"
                 style={{ width: "18rem" }}
               >
                 <img
@@ -162,13 +103,13 @@ function ViewTeacher() {
                   >
                     View profile
                   </a>
-                  <Link
+                  {/* <Link
                     to="/admin/allocate_students"
                     state={{ id: item._id }}
                     className="btn btn-primary mt-2"
                   >
                     allocate students
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             ))}

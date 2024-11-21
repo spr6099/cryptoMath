@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
 
 exports.studentRegister = async (req, res) => {
   console.log(req.body);
-  
+
   try {
     let register_datas = {
       name: req.body.name,
@@ -90,6 +90,7 @@ exports.studentRegister = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       status: "student",
+      teacher: "",
       studentRegID: studentRegister._id,
       parent_id: req.body.parent_id,
     };

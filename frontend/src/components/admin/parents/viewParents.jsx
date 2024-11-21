@@ -4,17 +4,24 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
-import Img from "./imgUrl"
+import Img from "./imgUrl";
 import "../../components.css";
 
 function ViewParents() {
   const [data, setData] = useState([]);
+  const [student, setStudentData] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/admin/viewParents")
       .then((res) => res.json())
       .then((result) => {
         console.log("parents", result);
         setData(result);
+      });
+    fetch("http://localhost:4000/admin/viewStudents")
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("studentsss", result);
+        setStudentData(result);
       });
   }, []);
 
@@ -41,6 +48,7 @@ function ViewParents() {
                   <th>State</th>
                   <th>Pin Code</th>
                   <th>image</th>
+                  <th>Students</th>
                 </thead>
 
                 {data.map((item, index) => (
@@ -60,6 +68,11 @@ function ViewParents() {
                           // src={`http://localhost:4000/parents/${item.parentRegID.image}`}
                         ></img>
                       </td>
+                      {student
+                        .filter((items) => items.parent_id === item._id)
+                        .map((items, index) => (
+                          <td>{items.studentRegID.name}</td>
+                        ))}
                       <td>
                         <button class="btn  m-2" style={{ color: "#FF0000" }}>
                           <DeleteIcon />

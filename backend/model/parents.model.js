@@ -48,6 +48,7 @@ const student_loginSchema = mongoose.Schema({
     ref: "student_registers",
   },
   parent_id: { type: String, required: true },
+  teacher: { type: String },
   status: { type: String, required: true },
   createdAt: { type: Date, default: Date.now() },
 });
