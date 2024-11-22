@@ -16,11 +16,11 @@ import axios from "axios";
  */
 export const Snake = ({ onGameEnd }) => {
   const [score, setScore] = useState(0);
-  //   console.log("score", score);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const [started, setStarted] = useState(false);
 
   const [gameOver, setGameOver] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const [foodPosition, setFoodPosition] = useState({
     x: Math.floor(Math.random() * 30) + 1,
@@ -32,33 +32,8 @@ export const Snake = ({ onGameEnd }) => {
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
 
   const [snakeBody, setSnakeBody] = useState([]);
-  const [highScore, setHighScore] = useState();
 
-  //   const [highScore, setHighScore] = useLocalStorage("highScore", 0);
-
-  useEffect(() => {
-    // Define the async function inside the effect
-    const fetchData = async () => {
-      try {
-        const datas = {
-          id: user._id,
-          game: "snake_game",
-        };
-        const response = await axios.post(
-          "http://localhost:4000/student/getScore",
-          datas,
-          { withCredentials: true }
-        );
-        const result = response.data;
-        setHighScore(result.score);
-        //   console.log("11", result.score);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    // Call the async function
-    fetchData();
-  }, []); // Empty dependency array means this runs once on mount
+  const [highScore, setHighScore] = useLocalStorage("highScore", 0);
 
   function startGame() {
     setGameOver(false);
@@ -76,47 +51,6 @@ export const Snake = ({ onGameEnd }) => {
     setSnakeBody([]);
   }
 
-  const saveGame = async () => {
-    // console.log(datas);
-    try {
-      if (score <= highScore) {
-        let datas = {
-          score: highScore,
-          id: user._id,
-          game: "snake_game",
-        };
-        const res = await axios.post(
-          "http://localhost:4000/student/score",
-          datas,
-          {
-            withCredentials: true,
-          }
-        );
-        const result = res.data;
-        console.log("result", result);
-        window.location.reload();
-      } else {
-        let datas = {
-          score: score,
-          id: user._id,
-          game: "snake_game",
-        };
-        const res = await axios.post(
-          "http://localhost:4000/student/score",
-          datas,
-          {
-            withCredentials: true,
-          }
-        );
-        const result = res.data;
-        console.log("result", result);
-        window.location.reload();
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const updateFoodPosition = () => {
     setFoodPosition({
       x: Math.floor(Math.random() * 30) + 1,
@@ -129,7 +63,21 @@ export const Snake = ({ onGameEnd }) => {
 
     onGameEnd?.({ score, highScore });
 
-    // alert("Game Over! Press OK to replay...");
+    console.log("user", user._id);
+    console.log("score", score);
+    console.log("Hscore", highScore);
+    let datas = {
+      user: user._id,
+      score: score,
+      Hscore: highScore,
+      game: "snake",
+    };
+    const Gamesave = async () => {
+      await axios.post("http://localhost:4000/student/score", datas, {
+        withCredentials: true,
+      });
+    };
+    Gamesave();
   };
 
   const changeDirection = (e) => {
@@ -174,27 +122,27 @@ export const Snake = ({ onGameEnd }) => {
     setSnakePosition(({ x, y }) => ({ x: x + velocity.x, y: y + velocity.y }));
 
     setSnakeBody((oldBody) => {
-      const bodys = [...oldBody];
+      const body = [...oldBody];
 
-      for (let i = bodys.length - 1; i > 0; i--) {
-        bodys[i] = bodys[i - 1];
+      for (let i = body.length - 1; i > 0; i--) {
+        body[i] = body[i - 1];
       }
 
-      bodys[0] = [snakePosition.x, snakePosition.y]; // Setting first element of snake body to current snake position
+      body[0] = [snakePosition.x, snakePosition.y]; // Setting first element of snake body to current snake position
 
-      return bodys;
+      return body;
     });
   }
 
   useEventListener("keyup", changeDirection);
 
-  //   useEffect(() => {
-  //     if (!started || gameOver) return;
+  useEffect(() => {
+    if (!started || gameOver) return;
 
-  //     if (score <= highScore) return;
+    if (score <= highScore) return;
 
-  //     setHighScore(score);
-  //   }, [score]);
+    setHighScore(score);
+  }, [score]);
 
   useEffect(() => {
     if (!started || gameOver) return;
@@ -227,22 +175,19 @@ export const Snake = ({ onGameEnd }) => {
   }, [snakeBody]);
 
   // Delay in milliseconds or null to stop it
-  useInterval(initGame, started && !gameOver ? 450 : null);
+  useInterval(initGame, started && !gameOver ? 150 : null);
 
-  return (
+  return (<>        <a className="btn btn-secondary" href="/student/games">Home</a>
+
     <div className="wrapper">
+      <div>
+      </div>
       {gameOver && (
         <div>
-          Game Over <button onClick={startGame}>Restart</button>{" "}
-          <button onClick={saveGame}>save</button>
+          Game Over <button onClick={startGame}>Restart</button>
         </div>
       )}
-
-      <div>
-        {!started && <button onClick={startGame}>start</button>}{" "}
-        {<a href="/student/games">home</a>}
-      </div>
-
+      <div>{!started && <button onClick={startGame}>start</button>}</div>
       <div className="game-details">
         <span className="score">Score: {score}</span>
         <span className="high-score">High Score: {highScore}</span>
@@ -271,7 +216,7 @@ export const Snake = ({ onGameEnd }) => {
         </button>
       </div>
     </div>
+    </>
   );
 };
-
 export default Snake;

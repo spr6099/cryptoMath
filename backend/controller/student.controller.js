@@ -27,33 +27,17 @@ exports.login = async (req, res) => {
 
 exports.score = async (req, res) => {
   let datas = {
+    HighScore: req.body.Hscore,
     score: req.body.score,
-    id: req.body.id,
+    user: req.body.user,
     game: req.body.game,
   };
+  console.log("datas", datas);
+
   try {
-    const result = await game_score.findOne({ id: req.body.id });
-    if (result) {
-      let SnakeScore = await game_score.findOneAndUpdate(
-        { id: req.body.id },
-        { score: req.body.score, game: req.body.game }
-      );
-    } else {
-      await game_score.create(datas);
-    }
+    const result = await game_score.create(datas);
 
     res.json("scoreSaved");
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-exports.getScore = async (req, res) => {
-  let id = req.body.id;
-
-  try {
-    const result = await game_score.findOne({ id: id, game: req.body.game });
-    res.json(result)
   } catch (err) {
     console.log(err);
   }

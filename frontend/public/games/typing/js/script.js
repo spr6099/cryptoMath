@@ -73,7 +73,19 @@ function initTimer() {
       ((charIndex - mistakes) / 5 / (maxTime - timeLeft)) * 60
     );
     wpmTag.innerText = wpm;
-    // console.log("wpm", wpm);
+    {
+      let datas = {
+        wpm: wpm,
+        mistakes: miistakes,
+      };
+
+      if (timeLeft <= 2) {
+        localStorage.setItem();
+      }
+      console.log("wpm", wpm);
+      console.log("mistakes", mistakes);
+      console.log("timeleft", timeLeft);
+    }
   } else {
     clearInterval(timer);
   }

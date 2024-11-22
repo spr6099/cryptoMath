@@ -49,7 +49,7 @@ function App() {
             <Route path="student_profile" element={<Student_profile />} />
             <Route path="viewParents" element={<ViewParents />}></Route>
             <Route path="viewStudent" element={<ViewStudents />}></Route>
-          </Route>
+          </Route>  
 
           <Route path="/teacher/login" element={<TeacherLogin />}></Route>
 

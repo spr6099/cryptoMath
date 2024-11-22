@@ -4,6 +4,6 @@ var student = require("../controller/student.controller");
 
 router.post("/login", student.login);
 router.post("/score", student.score);
-router.post("/getScore", student.getScore);
+// router.post("/getScore", student.getScore);
 
 module.exports = router;

@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 
 const scoreSchema = mongoose.Schema({
-  id: { type: String, required: true },
+  user: { type: String, required: true },
   score: { type: String, required: true },
+  HighScore: { type: String },
   game: { type: String, required: true },
   createdAt: { type: Date, default: Date.now() },
 });
