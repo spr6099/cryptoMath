@@ -28,6 +28,7 @@ import ProfilePage from "./components/admin/teacher/viewTeacher/profile";
 import Student_profile from "./components/admin/students/student_profile";
 import Teacher_Students from "./components/admin/teacher/viewTeacher/teacherStudents";
 import Students from "./components/teacher/components/students";
+import StudentProfile from "./components/parents/student_register/studentProfile";
 
 function App() {
   return (
@@ -66,6 +67,10 @@ function App() {
             <Route
               path="student_register"
               element={<StudentRegister />}
+            ></Route>
+            <Route
+              path="studentProfile/:id"
+              element={<StudentProfile />}
             ></Route>
           </Route>
 

@@ -2,12 +2,14 @@ import Footer from "../partials/Footer";
 import Header from "../partials/Header";
 import { TicTacToe } from "./tic-tac/index";
 function Games() {
+  // const id = 
+  // const typingUrl = `/games/typing/index.html`;
+  // const typing = `${typingUrl}`
   return (
     <>
       <Header />
       <div className="">
         <div className="row ms-5 m-3 ">
-          
           <div className="col-3 m-3 ">
             <div
               className="bg-primary   p-2"
@@ -26,7 +28,7 @@ function Games() {
               </a>
             </div>
           </div>
-         
+
           <div className="col-3 m-3 ">
             <div
               className="bg-primary  p-2"
@@ -50,6 +52,11 @@ function Games() {
               </a>
             </div>
           </div>
+
+          <div className="col-3 m-3">
+            <iframe src=""></iframe>
+          </div>
+
           <div className="col-3 m-3">
             <div
               className="bg-primary  p-2"

@@ -1,17 +1,22 @@
 function Banner() {
   return (
     <>
-      <div>
-        <div>
+      <div style={{ position: 'relative', height: '100vh' }}>
+        <div style={{ position: 'absolute' }}>
           <img
             src="/images/collage.jpg"
-            height={"350px"}
             width={"100%"}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: 'top', height: '100vh' }}
           ></img>
         </div>
-        <div>
-          <div style={{ backgroundColor: "#2e2f31", height: "40px" }}></div>
+        <div style={{ width: '100%', height: '100vh', position: "absolute", zIndex: 10, display: 'grid', placeContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+          <h1 className="fs-1" style={{ color: '#ffffff', fontWeight: '800' }}>
+            Welcome to the Next Generation
+            <br /> of School Management
+          </h1>
+          {/* <div style={{ backgroundColor: "#2e2f31", }}>
+            welcome
+          </div> */}
         </div>
       </div>
     </>

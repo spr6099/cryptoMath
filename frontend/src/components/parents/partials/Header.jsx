@@ -48,7 +48,7 @@ function Header() {
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="#">
-                  Parent
+                  Profile
                 </Link>
               </li>
               <li class="nav-item">

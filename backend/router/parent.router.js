@@ -6,4 +6,6 @@ router.post("/parentRegister", parent.parentRegister);
 router.post("/login", parent.login);
 router.post("/studentRegister", parent.studentRegister);
 router.post("/view_student_details", parent.view_student_details);
+router.post("/view_student", parent.view_student);
+
 module.exports = router;

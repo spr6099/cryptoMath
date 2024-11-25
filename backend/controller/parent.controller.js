@@ -112,3 +112,15 @@ exports.view_student_details = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.view_student = async (req, res) => {
+  try {
+    let data = await student_login
+      .findById(req.body.id)
+      .populate("studentRegID");
+
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};

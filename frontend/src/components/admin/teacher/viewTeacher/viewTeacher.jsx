@@ -103,83 +103,13 @@ function ViewTeacher() {
                   >
                     View profile
                   </a>
-                  {/* <Link
-                    to="/admin/allocate_students"
-                    state={{ id: item._id }}
-                    className="btn btn-primary mt-2"
-                  >
-                    allocate students
-                  </Link> */}
+                 
                 </div>
               </div>
             ))}
           </div>
 
-          {/* <section className="">
-            <Link
-              class=" btn text-light m-2"
-              to="/admin/addTeacher"
-              style={{ backgroundColor: "#FF4500" }}
-            >
-              Add
-            </Link>
-            <table class="table">
-              <thead class="">
-                <th>name</th>
-                <th>dob</th>
-                <th>Gender</th>
-                <th>email</th>
-                <th>subject</th>
-                <th>address</th>
-                <th>phone</th>
-                <th>Password</th>
-                <th>image</th>
-              </thead>
-
-              {data.map((item, index) => (
-                <>
-                  <tr>
-                    <td class="  ">{item.regId.name}</td>
-                    <td>{item.regId.dob}</td>
-                    <td>{item.regId.gender}</td>
-                    <td>{item.email}</td>
-                    <td>{item.regId.subject}</td>
-                    <td>{item.regId.address}</td>
-                    <td>{item.regId.number}</td>
-                    <td>{item.password}</td>
-                    <td>
-                      <img
-                        style={{ height: "100px", width: "100px" }}
-                        src={img + item.regId.image}
-                        // src={`http://localhost:2000/productImages/${items.image}`}
-                      ></img>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          Delete(item._id);
-                        }}
-                        class="btn  m-2"
-                        style={{ color: "#FF0000" }}
-                      >
-                        <DeleteIcon />
-                      </button>
-
-                      <Link
-                        to={"/admin/editTeacher"}
-                        state={{ id: item._id }}
-                        style={{ color: "#00FF00" }}
-                      >
-                        {" "}
-                        <BorderColorTwoToneIcon />
-                      </Link>
-                    </td>
-                  </tr>
-                  <tr></tr>
-                </>
-              ))}
-            </table>
-          </section> */}
+          
         </div>
       </div>
       <Footer />

@@ -14,12 +14,15 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import Img from "../admin/students/imgUrl";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [parents, setParents] = useState(
     JSON.parse(localStorage.getItem("parents"))
   );
+
   const [students, setStudents] = useState([]);
+  console.log("students", students);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -59,19 +62,25 @@ function Home() {
                         borderBottomLeftRadius: ".5rem",
                       }}
                     >
-                      <MDBCardImage
-                        src={Img + item.studentRegID.image}
-                        alt="Avatar"
-                        className="my-5"
-                        style={{ width: "80px", height: "80px" }}
-                        fluid
-                      />
-                      <MDBTypography tag="h5">
-                        {item.studentRegID.name}
-                      </MDBTypography>
-                      <MDBCardText>Web Designer</MDBCardText>
-                      <MDBIcon far icon="edit mb-5" Review />
+                      <Link
+                        className="nav-link"
+                        to={`/parents/studentProfile/${item._id}`}
+                      >
+                        <MDBCardImage
+                          src={Img + item.studentRegID.image}
+                          alt="Avatar"
+                          className="my-5"
+                          style={{ width: "80px", height: "80px" }}
+                          fluid
+                        />
+                        <MDBTypography tag="h5">
+                          {item.studentRegID.name}
+                        </MDBTypography>
+                        <MDBCardText>Web Designer</MDBCardText>
+                        <MDBIcon far icon="edit mb-5" Review />
+                      </Link>
                     </MDBCol>
+
                     <MDBCol md="8">
                       <MDBCardBody className="p-4 bg-secondary bg-gradient">
                         <MDBTypography tag="h6">Information</MDBTypography>
