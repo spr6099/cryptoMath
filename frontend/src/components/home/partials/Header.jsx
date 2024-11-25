@@ -1,75 +1,99 @@
-import "../../components.css";
+
+import { Link } from "react-router-dom";
+import {
+  MDBContainer,
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarToggler,
+  MDBIcon,
+  MDBNavbarNav,
+  MDBNavbarItem,
+  MDBNavbarLink,
+  MDBBtn,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBCollapse,
+} from 'mdb-react-ui-kit';
+import { useState } from "react";
+
 
 function Header() {
+  const [openNav, setOpenNav] = useState(false);
+
   return (
     <>
-      <div style={{ position: "sticky", top: "0" }}>
-        {/* <div class=" bg-light" style={{ height: "70px" }}>
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
-            <h5
-              class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0  lobster-regular p-2 m-2"
-              style={{ color: "#8E8D8A" }}
-            >
-              CryptoMath
-            </h5>
-            <a
-              href="#"
-              class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
-            ></a>
+      <MDBNavbar expand='lg' light bgColor='light'>
+        <MDBContainer fluid>
+          <MDBNavbarBrand >CryptoMath</MDBNavbarBrand>
 
-            <h2
-              class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0  text-dark"
-              // style={{ color: "#8E8D8A" }}
-            >
-              Home
-            </h2>
-          </div>
-        </div> */}
-        <div>
-          <div style={{ backgroundColor: "#2e2f31", height: "50px" }}>
-            <div class="dropdown">
-              <button class="dropbtn btn text-light m-2">
-                <a href="/">Home</a>
-              </button>
-            </div>
+          <MDBNavbarToggler
+            type='button'
+            data-target='#navbarCenteredExample'
+            aria-controls='navbarCenteredExample'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+            onClick={() => setOpenNav(!openNav)}
+          >
+            <MDBIcon icon='bars' fas />
+          </MDBNavbarToggler>
 
-            {/* -----------Register----------- */}
+          <MDBCollapse navbar open={openNav} className='justify-content-end' id='navbarCenteredExample'>
+            <MDBNavbarNav fullWidth={false} className='mb-2 mb-lg-0'>
+              <MDBNavbarItem>
+                <MDBNavbarLink active aria-current='page' href='#'>
+                  <Link to='/'>Home</Link>
+                </MDBNavbarLink>
+              </MDBNavbarItem>
 
-            <div class="dropdown">
-              <button class="dropbtn btn text-light">Register</button>
-              <div class="dropdown-content">
-                <a href="/parents/register">parents Register</a>
-              </div>
-            </div>
-            {/* -----------Login--------- */}
+              <MDBNavbarItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle tag='a' className='nav-link'>
+                    Register
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu>
+                    <MDBDropdownItem link><Link to="/parents/register">parents Register</Link></MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle tag='a' className='nav-link'>
+                    Login
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu>
+                    <Link to="/admin/login">
+                      <MDBDropdownItem link>
+                        Admin
+                      </MDBDropdownItem>
+                    </Link>
+                      <Link to="/parents/login">
+                    <MDBDropdownItem link>
+                      Parents
+                    </MDBDropdownItem>
+                      </Link>
+                      <Link to="/teacher/login">
+                    <MDBDropdownItem link>
+                      Teacher
+                    </MDBDropdownItem>
+                      </Link>
+                      <Link to="/student/login">
+                    <MDBDropdownItem link>
+                      students
+                    </MDBDropdownItem>
+                      </Link>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavbarItem>
 
-            <div class="dropdown">
-              <button class="dropbtn btn text-light">Login</button>
-              <div class="dropdown-content">
-                <a href="/admin/login">admin</a>
-                <a href="/parents/login">Parents </a>
-                <a href="/teacher/login">Teacher </a>
-                <a href="/student/login">students</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <div>
-        <div>
-          <img
-            src="/images/collage.jpg"
-            height={"350px"}
-            width={"100%"}
-            style={{ objectFit: "cover" }}
-          ></img>
-        </div>
-        <div>
-          <div style={{ backgroundColor: "#245501", height: "40px" }}></div>
-        </div>
-      </div> */}
+            </MDBNavbarNav>
+          </MDBCollapse>
+        </MDBContainer>
+      </MDBNavbar>
     </>
   );
 }
 
 export default Header;
+

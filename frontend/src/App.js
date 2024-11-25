@@ -19,6 +19,8 @@ import Main from "./components/home/Home";
 import { AdminLayout } from "./components/layout/adminLayout";
 import { TeacherLayout } from "./components/layout/teacherLayout";
 import { StudentLayout } from "./components/layout/studentLayout";
+import { ParentsLayout } from "./components/layout/parentsLayout";
+
 import Games from "./components/students/games/game";
 import TicTacToe from "./components/students/games/tic-tac/index";
 import Snake from "./components/students/games/snake/snake";
@@ -33,8 +35,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}></Route>
-
           <Route path="/admin/login" element={<AdminLogin />}></Route>
+          <Route path="/teacher/login" element={<TeacherLogin />}></Route>
+          <Route path="/parents/login" element={<ParentsLogin />}></Route>
+          <Route path="/parents/register" element={<ParentsRegister />}></Route>
+          <Route path="/student/login" element={<StudentLogin />}></Route>
 
           <Route path="/admin" element={<AdminLayout />}>
             {/* <Route path="/admin/login" element={<Home />}></Route> */}
@@ -49,24 +54,20 @@ function App() {
             <Route path="student_profile" element={<Student_profile />} />
             <Route path="viewParents" element={<ViewParents />}></Route>
             <Route path="viewStudent" element={<ViewStudents />}></Route>
-          </Route>  
-
-          <Route path="/teacher/login" element={<TeacherLogin />}></Route>
+          </Route>
 
           <Route path="/teacher" element={<TeacherLayout />}>
             <Route path="home" element={<TeacherHome />}></Route>
             <Route path="students/:id" element={<Students />} />
           </Route>
 
-          <Route path="/parents/home" element={<ParentsHome />}></Route>
-          <Route path="/parents/login" element={<ParentsLogin />}></Route>
-
-          <Route path="/parents/register" element={<ParentsRegister />}></Route>
-          <Route
-            path="/parents/student_register"
-            element={<StudentRegister />}
-          ></Route>
-          <Route path="/student/login" element={<StudentLogin />}></Route>
+          <Route path="/parents" element={<ParentsLayout />}>
+            <Route path="home" element={<ParentsHome />}></Route>
+            <Route
+              path="student_register"
+              element={<StudentRegister />}
+            ></Route>
+          </Route>
 
           <Route path="/student" element={<StudentLayout />}>
             <Route path="home" element={<StudentsHome />}></Route>

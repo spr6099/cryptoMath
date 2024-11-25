@@ -66,7 +66,7 @@ function ViewTeacher() {
 
       <div className="row ">
         {/*------------------ side bar------------------- */}
-       
+       <div className="col-1"></div>
         {/*------------------ View Page -----------------------*/}
         <div
           class="col-10 "

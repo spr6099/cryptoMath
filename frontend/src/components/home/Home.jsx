@@ -12,7 +12,7 @@ function Home() {
         <div>
           <div>
             <div style={{ backgroundColor: "#e4f0d0" }}></div>
-            <admin />
+            {/* <admin /> */}
           </div>
         </div>
         <Banner/>
