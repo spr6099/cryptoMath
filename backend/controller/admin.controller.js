@@ -195,6 +195,7 @@ exports.student_profile = async (req, res) => {
   }
 };
 
+
 exports.selectTeacher = async (req, res) => {
   try {
     let data = await TeacherLogin.find().populate("regId");

@@ -21,14 +21,16 @@ import { TeacherLayout } from "./components/layout/teacherLayout";
 import { StudentLayout } from "./components/layout/studentLayout";
 import { ParentsLayout } from "./components/layout/parentsLayout";
 
-import Games from "./components/students/games/game";
-import TicTacToe from "./components/students/games/tic-tac/index";
+import Games from "./components/students/games/gameHome";
 import Snake from "./components/students/games/snake/snake";
 import ProfilePage from "./components/admin/teacher/viewTeacher/profile";
 import Student_profile from "./components/admin/students/student_profile";
 import Teacher_Students from "./components/admin/teacher/viewTeacher/teacherStudents";
 import Students from "./components/teacher/components/students";
 import StudentProfile from "./components/parents/student_register/studentProfile";
+import Typing from "./components/students/games/typing";
+import Guess from "./components/students/games/guess";
+import Fruit from "./components/students/games/fruit";
 
 function App() {
   return (
@@ -77,8 +79,12 @@ function App() {
           <Route path="/student" element={<StudentLayout />}>
             <Route path="home" element={<StudentsHome />}></Route>
             <Route path="games" element={<Games />}></Route>
-            <Route path="games/ticTac" element={<TicTacToe />}></Route>
             <Route path="games/snake" element={<Snake />}></Route>
+            <Route path="typing/:id" element={<Typing />}></Route>
+            <Route path="guess/:id" element={<Guess />}></Route>
+            <Route path="fruit/:id" element={<Fruit />}></Route>
+
+
           </Route>
         </Routes>
       </BrowserRouter>

@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
 
 
 exports.students = async (req, res) => {
-  console.log(req.body.id);
+  console.log("ll",req.body.id);
 
   try {
     let data = await student_login
@@ -42,3 +42,4 @@ exports.students = async (req, res) => {
     console.log(err);
   }
 };
+

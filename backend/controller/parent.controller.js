@@ -49,9 +49,9 @@ exports.login = async (req, res) => {
     let data = await ParentLogin.findOne({ email: loginData.email });
     if (data) {
       if (data.password == loginData.password) {
-        req.session.parents = data;
-        let parents = req.session.parents;
-        res.json(parents);
+        req.session.user = data;
+        // let parents = req.session.parents;
+        res.json(req.session.user);
       } else {
         res.json("incorrect Password");
         console.log("invalid Password");

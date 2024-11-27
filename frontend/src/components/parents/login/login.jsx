@@ -17,7 +17,7 @@ function ParentLogin() {
     };
     // console.log(datas);
     fetch("http://localhost:4000/parent/login", {
-      method: "post",
+      method: "POST",
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function ParentLogin() {
     })
       .then((res) => res.json())
       .then((result) => {
-        // console.log("parentss", result);
+        console.log("parentss", result);
         if (result.status == "parent") {
           localStorage.setItem("parents", JSON.stringify(result));
           navigate("/parents/home");

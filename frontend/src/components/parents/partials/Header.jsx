@@ -46,16 +46,6 @@ function Header() {
                   Add Student
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="#">
-                  Profile
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="#">
-                  Student
-                </Link>
-              </li>
             </ul>
 
             <div

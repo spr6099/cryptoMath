@@ -12,6 +12,7 @@ router.post("/editTeacher", adminController.editTeacher);
 router.post("/updateTeacher", adminController.updateTeacher);
 router.get("/viewStudents", adminController.viewStudents);
 router.post("/student_profile", adminController.student_profile);
+// router.post("/student_teacher", adminController.student_teacher);
 
 router.get("/selectTeacher", adminController.selectTeacher);
 

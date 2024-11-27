@@ -12,8 +12,14 @@ import { Height } from "@mui/icons-material";
 
 function ViewStudents() {
   const [data, setData] = useState([]);
-
+  const [teacher, setTeacher] = useState([]);
   useEffect(() => {
+    fetch("http://localhost:4000/admin/selectTeacher")
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("teacher", result);
+        setTeacher(result);
+      });
     fetch("http://localhost:4000/admin/viewStudents")
       .then((res) => res.json())
       .then((result) => {
@@ -43,6 +49,7 @@ function ViewStudents() {
                       <Link
                         to="/admin/student_profile"
                         state={{ id: item._id }}
+                        className="text-reset"
                       >
                         <Card.Body>
                           <Card.Img
@@ -55,7 +62,11 @@ function ViewStudents() {
                           Some quick example text to build on the card title and
                           make up the bulk of the card's content.
                         </Card.Text> */}
-                          <p>Teacher:{item.teacher}</p>
+                          {teacher
+                            .filter((items) => items._id === item.teacher)
+                            .map((items, index) => (
+                              <p className="">Teacher:{items.regId.name}</p>
+                            ))}
                         </Card.Body>
                       </Link>{" "}
                     </Card>

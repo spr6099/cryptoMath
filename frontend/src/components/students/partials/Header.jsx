@@ -21,15 +21,7 @@ function Header() {
               <li class="nav-item">
                 <Link class="nav-link active" aria-current="page" to="/student/home">Home</Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link">Dropdown</Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link">Dropdown</Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link">Dropdown</Link>
-              </li>
+
             </ul>
             
             <div class="dropdown  pb-2 m-2">
@@ -48,7 +40,7 @@ function Header() {
                 />
               </a>
               <ul class="dropdown-menu text-small">
-                <li>
+                {/* <li>
                   <a class="dropdown-item" href="#">
                     New project...
                   </a>
@@ -57,7 +49,7 @@ function Header() {
                   <a class="dropdown-item" href="#">
                     Settings
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a class="dropdown-item" href="#">
                     Profile

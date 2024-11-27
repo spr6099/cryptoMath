@@ -15,6 +15,7 @@ import {
 } from "mdb-react-ui-kit";
 import Img from "../admin/students/imgUrl";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
   const [parents, setParents] = useState(
@@ -27,10 +28,22 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+  const [score, setScore] = useState("");
   // --------------useEffect-----------------
   useEffect(() => {
     let datas = new FormData();
+    const getData = async () => {
+      const res = await axios.post(
+        "http://localhost:4000/student/getScore",
+        datas,
+        { withCredentials: true }
+      );
+      let result = res.data;
+      setScore(result);
+    };
+    getData();
+
+   
     datas.append("parent_id", parents._id);
     fetch("http://localhost:4000/parent/view_student_details", {
       method: "post",
@@ -42,6 +55,10 @@ function Home() {
         setStudents(result);
       });
   }, []);
+
+  const review = () => {
+    alert("enter Review");
+  };
 
   return (
     <div>
@@ -77,45 +94,122 @@ function Home() {
                           {item.studentRegID.name}
                         </MDBTypography>
                         <MDBCardText>Web Designer</MDBCardText>
-                        <MDBIcon far icon="edit mb-5" Review />
                       </Link>
+                      <MDBIcon onClick={review} far icon="edit mb-5" Review />
                     </MDBCol>
 
                     <MDBCol md="8">
                       <MDBCardBody className="p-4 bg-secondary bg-gradient">
-                        <MDBTypography tag="h6">Information</MDBTypography>
+                        <MDBTypography tag="h6">Games</MDBTypography>
                         <hr className="mt-0 mb-4" />
-                        <MDBRow className="pt-1">
+                        <MDBRow className="">
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6">Score</MDBTypography>
+                            <MDBTypography tag="h6">Fruit</MDBTypography>
                             <MDBCardText className="text-muted">
-                              100
+                              {
+                                score.filter(
+                                  (items) =>
+                                    items.user === item._id &&
+                                    items.game === "fruit"
+                                ).length
+                              }
+                              :{" "}
+                              {Math.max(
+                                ...score
+                                  .filter(
+                                    (itemss) =>
+                                      itemss.user === item._id &&
+                                      itemss.game === "fruit"
+                                  )
+                                  .map((item) => parseInt(item.score))
+                              )}
+                            </MDBCardText>
+                          </MDBCol>
+
+                          <MDBCol size="6" className="mb-3 ">
+                            <MDBTypography tag="h6">Typing</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {
+                                score.filter(
+                                  (items) =>
+                                    items.user === item._id &&
+                                    items.game === "typing"
+                                ).length
+                              }{" "}
+                              :{" "}
+                              {Math.max(
+                                ...score
+                                  .filter(
+                                    (itemss) =>
+                                      itemss.user === item._id &&
+                                      itemss.game === "typing"
+                                  )
+                                  .map((item) => parseInt(item.score))
+                              )}
                             </MDBCardText>
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6">Phone</MDBTypography>
+                            <MDBTypography tag="h6">Snake</MDBTypography>
                             <MDBCardText className="text-muted">
-                              123 456 789
+                              {
+                                score.filter(
+                                  (items) =>
+                                    items.user === item._id &&
+                                    items.game === "snake"
+                                ).length
+                              }{" "}
+                              :
+                              {Math.max(
+                                ...score
+                                  .filter(
+                                    (itemss) =>
+                                      itemss.user === item._id &&
+                                      itemss.game === "snake"
+                                  )
+                                  .map((item) => parseInt(item.score))
+                              )}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6">Guess</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {
+                                score.filter(
+                                  (items) =>
+                                    items.user === item._id &&
+                                    items.game === "guess"
+                                ).length
+                              }
+                              :
+                              {Math.max(
+                                ...score
+                                  .filter(
+                                    (itemss) =>
+                                      itemss.user === item._id &&
+                                      itemss.game === "guess"
+                                  )
+                                  .map((item) => parseInt(item.score))
+                              )}
                             </MDBCardText>
                           </MDBCol>
                         </MDBRow>
 
-                        <MDBTypography tag="h6">Information</MDBTypography>
+                        {/* <MDBTypography tag="h6">Information</MDBTypography> */}
                         <hr className="mt-0 mb-4" />
                         <MDBRow className="pt-1">
-                          <MDBCol size="6" className="mb-3">
+                          {/* <MDBCol size="6" className="mb-3">
                             <MDBTypography tag="h6">Performance</MDBTypography>
                             <MDBCardText className="text-muted">
                               Average
                             </MDBCardText>
-                          </MDBCol>
+                          </MDBCol> */}
                           <MDBCol size="6" className="mb-3">
                             <MDBTypography tag="h6">Total game</MDBTypography>
-                            <MDBCardText className="text-muted">12</MDBCardText>
+                            <MDBCardText className="text-muted">4</MDBCardText>
                           </MDBCol>
                         </MDBRow>
 
-                        <div className="d-flex justify-content-start">
+                        {/* <div className="d-flex justify-content-start">
                           <a href="#!">
                             <MDBIcon fab icon="facebook me-3" size="lg" />
                           </a>
@@ -125,7 +219,7 @@ function Home() {
                           <a href="#!">
                             <MDBIcon fab icon="instagram me-3" size="lg" />
                           </a>
-                        </div>
+                        </div> */}
                       </MDBCardBody>
                     </MDBCol>
                   </MDBRow>

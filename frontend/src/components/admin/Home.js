@@ -109,7 +109,7 @@ function Home() {
         </div>
 
         <div className="col-10 ">
-          <h2>hkjk</h2>
+          <h2>Home</h2>
         </div>
       </div>
       <Footer />

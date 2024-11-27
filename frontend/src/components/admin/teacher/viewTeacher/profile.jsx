@@ -3,6 +3,8 @@ import Footer from "../../partials/Footer";
 import Header from "../../partials/Header";
 import "./viewTeacher.css";
 import img from "./imgUrl";
+import ImgStudent from "../../students/imgUrl";
+
 import React from "react";
 import {
   MDBCol,
@@ -22,10 +24,11 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import {  Link, useParams } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 function ProfilePage() {
-  // const [data, setData] = useState([]);
+  const [student, setStudent] = useState([]);
   const [name, setName] = useState("");
   const [dob, setDOB] = useState("");
   const [email, setEmail] = useState("");
@@ -43,6 +46,12 @@ function ProfilePage() {
     id: id,
   };
   useEffect(() => {
+    fetch("http://localhost:4000/admin/viewStudents")
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("studentsss", result);
+        setStudent(result);
+      });
     fetch("http://localhost:4000/admin/teacher_profile", {
       method: "post",
       headers: {
@@ -339,7 +348,32 @@ function ProfilePage() {
                             </span>{" "}
                             Allocated Students
                           </MDBCardText>
-                          {std}
+                          {/* {std} */}
+                          {student
+                            .filter((item) => item.teacher === id)
+                            .map((item, index) => (
+                              <Card className="col-2" style={{ width: "18rem" }}>
+                      <Link
+                        to="/admin/student_profile"
+                        state={{ id: item._id }}
+                        className="text-reset"
+                      >
+                        <Card.Body>
+                          <Card.Img
+                            variant="top"
+                            src={ImgStudent + item.studentRegID.image}
+                            style={{ height: "100px", width: "100px" }}
+                          />
+                          <Card.Title>{item.studentRegID.name}</Card.Title>
+                          {/* <Card.Text>
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </Card.Text> */}
+                          
+                        </Card.Body>
+                      </Link>{" "}
+                    </Card>
+                            ))}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>

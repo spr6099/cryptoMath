@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "../partials/Footer";
 import Header from "../partials/Header";
 import {
@@ -23,6 +23,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Img from "./imgUrl";
 
+import ImgTeacher from "../teacher/viewTeacher/imgUrl";
+import { Button, Card } from "react-bootstrap";
+
 function Student_profile() {
   const location = useLocation();
   const [name, setName] = useState("");
@@ -32,9 +35,13 @@ function Student_profile() {
   const [tid, setTid] = useState("");
   const [teacher, setTeacher] = useState([]);
   const [teach, setTeach] = useState("");
+  
 
   let student_id = {
     id: location.state.id,
+  };
+  let teach_id = {
+    id: teach,
   };
 
   useEffect(() => {
@@ -44,6 +51,7 @@ function Student_profile() {
         console.log("teacher", result);
         setTeacher(result);
       });
+
     const Fetchstd = async () => {
       const res = await axios.post(
         "http://localhost:4000/admin/student_profile",
@@ -53,6 +61,8 @@ function Student_profile() {
         }
       );
       const result = res.data;
+      // console.log("eeeee", result);
+
       setName(result.studentRegID.name);
       setEmail(result.email);
       setDOB(result.studentRegID.dob);
@@ -267,7 +277,39 @@ function Student_profile() {
                             </span>{" "}
                             Teacher{" "}
                           </MDBCardText>
-                          {teach}
+
+                          {teacher
+                            .filter((item) => item._id === teach)
+                            .map((item, index) => (
+                              <>
+                                <Card
+                                  className="col-2"
+                                  style={{ width: "18rem" }}
+                                >
+                                  <Link
+                                    to={`/admin/profile/${item._id}`}
+                                    // state={{ id: item._id }}
+                                  >
+                                    <Card.Body>
+                                      <Card.Img
+                                        variant="top"
+                                        src={ImgTeacher + item.regId.image}
+                                        style={{
+                                          height: "100px",
+                                          width: "100px",
+                                        }}
+                                      />
+                                      <Card.Title>{item.regId.name}</Card.Title>
+                                      {/* <Card.Text>
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content.
+                        </Card.Text> */}
+                                      {/* <p>Teacher:{}</p> */}
+                                    </Card.Body>
+                                  </Link>{" "}
+                                </Card>
+                              </>
+                            ))}
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
@@ -281,23 +323,29 @@ function Student_profile() {
                             </span>{" "}
                             Students
                           </MDBCardText>
-                          <select
-                            // value={selectedTeacher}
-                            onChange={handleTeacherChange}
-                            className="form-select"
-                          >
-                            {" "}
-                            {/* {students.length === 0 ? (
+                          {/* <MDBBtn onClick={() => setClassname("visible")}> */}
+                          {/* {" "}
+                            change Teacher
+                          </MDBBtn> */}
+                          <div className="">
+                            <select
+                              // value={selectedTeacher}
+                              onChange={handleTeacherChange}
+                              className="form-select"
+                            >
+                              {" "}
+                              {/* {students.length === 0 ? (
                           <option value="">No students available</option> // This will show when there are no students
                         ) : ( <option value="">Select Student</option>
                         ) */}
-                            <option value="">Select Teacher</option>
-                            {teacher.map((item, index) => (
-                              <option value={item._id}>
-                                {item.regId.name}
-                              </option>
-                            ))}
-                          </select>{" "}
+                              <option value="">Select Teacher</option>
+                              {teacher.map((item, index) => (
+                                <option value={item._id}>
+                                  {item.regId.name}
+                                </option>
+                              ))}
+                            </select>{" "}
+                          </div>
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>

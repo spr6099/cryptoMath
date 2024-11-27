@@ -52,6 +52,10 @@ function generate() {
 function check() {
   var guess = document.querySelector("#guess").value;
   if (attempts > 13 && guess !== computerchoice) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const user = Object.fromEntries(searchParams.entries());
+    let score = "1";
+    callReact({ score, user });
     streak = 0;
     streakcounter.innerHTML = " " + streak;
     attemptalert = document.querySelector("#nomoreattempts");
@@ -60,7 +64,7 @@ function check() {
       "You Ran Out Of Attempts. The Number Was " +
       computerchoice +
       ". Try Another Number.";
-      
+
     attemptalert.style.backgroundColor = "red";
     attemptalert.style.color = "white";
     var newgamebutton = document.querySelector("#other");
@@ -76,6 +80,12 @@ function check() {
     h4.innerHTML = "Type A Guess In The Box Below";
   } else {
     if (computerchoice == guess) {
+      console.log();
+      const searchParams = new URLSearchParams(window.location.search);
+      const user = Object.fromEntries(searchParams.entries());
+      let score = "90";
+      callReact({ score, user });
+
       attemptalert.style.display = "none";
       result1.style.marginTop = "75px";
       result2.style.marginTop = "75px";
@@ -171,4 +181,54 @@ function reveal() {
     var giveupbutton = document.querySelector("#giveup");
     giveupbutton.style.display = "none";
   }
+}
+
+// function saveGame() {
+//   const searchParams = new URLSearchParams(window.location.search);
+
+//   const user = Object.fromEntries(searchParams.entries());
+
+//   const wpm = wpmTag.innerText;
+//   const time = timeTag.innerText;
+//   const mistake = mistakeTag.innerText;
+//   let score = "";
+//   const cpm = cpmTag.innerText;
+
+//   if (mistake <= 4 && wpm >= 25) {
+//     score = "80";
+//   } else {
+//     score = "30";
+//   }
+//   // gameOver(score, user);
+//   callReact({ wpm, time, mistake, cpm, score, user });
+//   generate();
+// }
+
+// window.addEventListener("load", () => {
+//   document.getElementById("other").addEventListener("click", () => {
+//     const searchParams = new URLSearchParams(window.location.search);
+
+//     const user = Object.fromEntries(searchParams.entries());
+//     const x = scorecounter.innerHTML;
+//     console.log(x);
+
+//     let score = x === "1" ? "100" : "0";
+
+//     console.log(score);
+
+//     // gameOver(score, user);
+//     callReact({ score, user });
+//     // alert("ok");
+//     generate();
+//   });
+// });
+
+function gameOver(score, userData) {
+  callReact({ score, userData });
+}
+
+function callReact(data) {
+  console.log("calling db===>", data);
+
+  window?.parent?.window?.postMessage(data);
 }

@@ -73,20 +73,9 @@ function initTimer() {
       ((charIndex - mistakes) / 5 / (maxTime - timeLeft)) * 60
     );
     wpmTag.innerText = wpm;
-    {
-      let datas = {
-        wpm: wpm,
-        mistakes: miistakes,
-      };
-
-      if (timeLeft <= 2) {
-        localStorage.setItem();
-      }
-      console.log("wpm", wpm);
-      console.log("mistakes", mistakes);
-      console.log("timeleft", timeLeft);
-    }
   } else {
+    // console.log("wpm", wpm);
+
     clearInterval(timer);
   }
 }
@@ -103,6 +92,44 @@ function resetGame() {
   cpmTag.innerText = 0;
 }
 
+// --------------------------------
+
+  function saveGame() {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    const user = Object.fromEntries(searchParams.entries());
+
+    const wpm = wpmTag.innerText;
+    const time = timeTag.innerText;
+    const mistake = mistakeTag.innerText;
+    let score = "";
+    const cpm = cpmTag.innerText;
+    if (mistake <= 4 && wpm >= 25) {
+      score = "80";
+    } else if (mistake <= 10 && wpm >= 15) {
+      score = "70";
+    } else if (mistake <= 15 && wpm >= 13) {
+      score = "50";
+    } else {
+      score = "30";
+    }
+    // gameOver(score, user);
+    callReact({ wpm, time, mistake, cpm, score, user });
+    resetGame();
+  }
+
+  function gameOver(score, userData) {
+    callReact({ score, userData });
+  }
+
+  function callReact(data) {
+    console.log("calling db===>", data);
+
+    window?.parent?.window?.postMessage(data);
+  }
+//------------------------------------------
+
 loadParagraph();
 inpField.addEventListener("input", initTyping);
-tryAgainBtn.addEventListener("click", resetGame);
+// tryAgainBtn.addEventListener("click", resetGame);
+tryAgainBtn.addEventListener("click", saveGame);
